@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E91F36249BEB444FFFF1C20 /* libPods-UAFRoadNode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */; };
+		8AB7879423F28D58007F8018 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7879323F28D58007F8018 /* Podfile */; };
 		B5C7472623F2897D00B16C2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7472523F2897D00B16C2B /* AppDelegate.swift */; };
 		B5C7472823F2897D00B16C2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7472723F2897D00B16C2B /* ViewController.swift */; };
 		B5C7472B23F2897D00B16C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C7472923F2897D00B16C2B /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E988F724906A2BD4DCB1762 /* Pods-UAFRoadNode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAFRoadNode.release.xcconfig"; path = "Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode.release.xcconfig"; sourceTree = "<group>"; };
+		8AB7879323F28D58007F8018 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B5C7472223F2897D00B16C2B /* UAFRoadNode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UAFRoadNode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C7472523F2897D00B16C2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5C7472723F2897D00B16C2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		B5C7474123F2897E00B16C2B /* UAFRoadNodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UAFRoadNodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C7474523F2897E00B16C2B /* UAFRoadNodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAFRoadNodeUITests.swift; sourceTree = "<group>"; };
 		B5C7474723F2897E00B16C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UAFRoadNode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F523469EF1F0FC0297D5135F /* Pods-UAFRoadNode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAFRoadNode.debug.xcconfig"; path = "Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E91F36249BEB444FFFF1C20 /* libPods-UAFRoadNode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +81,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FE58306681A597EBFC2009C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4052644C51F3CDF01C8737F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F523469EF1F0FC0297D5135F /* Pods-UAFRoadNode.debug.xcconfig */,
+				7E988F724906A2BD4DCB1762 /* Pods-UAFRoadNode.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B5C7471923F2897D00B16C2B = {
 			isa = PBXGroup;
 			children = (
+				8AB7879323F28D58007F8018 /* Podfile */,
 				B5C7472423F2897D00B16C2B /* UAFRoadNode */,
 				B5C7473923F2897E00B16C2B /* UAFRoadNodeTests */,
 				B5C7474423F2897E00B16C2B /* UAFRoadNodeUITests */,
 				B5C7472323F2897D00B16C2B /* Products */,
+				4052644C51F3CDF01C8737F1 /* Pods */,
+				1FE58306681A597EBFC2009C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5C7474A23F2897E00B16C2B /* Build configuration list for PBXNativeTarget "UAFRoadNode" */;
 			buildPhases = (
+				3C0A922A483ACF9C38BFD904 /* [CP] Check Pods Manifest.lock */,
 				B5C7471E23F2897D00B16C2B /* Sources */,
 				B5C7471F23F2897D00B16C2B /* Frameworks */,
 				B5C7472023F2897D00B16C2B /* Resources */,
+				9C473068CDDD550E13FB937E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +260,7 @@
 			files = (
 				B5C7473023F2897E00B16C2B /* LaunchScreen.storyboard in Resources */,
 				B5C7472D23F2897E00B16C2B /* Assets.xcassets in Resources */,
+				8AB7879423F28D58007F8018 /* Podfile in Resources */,
 				B5C7472B23F2897D00B16C2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +280,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0A922A483ACF9C38BFD904 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UAFRoadNode-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C473068CDDD550E13FB937E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B5C7471E23F2897D00B16C2B /* Sources */ = {
@@ -430,6 +502,7 @@
 		};
 		B5C7474B23F2897E00B16C2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F523469EF1F0FC0297D5135F /* Pods-UAFRoadNode.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -447,6 +520,7 @@
 		};
 		B5C7474C23F2897E00B16C2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E988F724906A2BD4DCB1762 /* Pods-UAFRoadNode.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
