@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3E91F36249BEB444FFFF1C20 /* libPods-UAFRoadNode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */; };
-		8A7271732404B8B5002DB500 /* myMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7271722404B8B5002DB500 /* myMapScreen.swift */; };
 		8A7271B22404C7B8002DB500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7271622404616E002DB500 /* CoreLocation.framework */; };
 		8A7271DB2404F91B002DB500 /* showMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7271DA2404F91B002DB500 /* showMap.swift */; };
+		8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A740CAC242E8C2100A5436A /* SceneDelegate.swift */; };
+		8A740CAF242E8DC700A5436A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A740CAE242E8DC700A5436A /* Main.storyboard */; };
+		8A740CB3242E8FA200A5436A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A740CB2242E8FA200A5436A /* AppDelegate.swift */; };
 		8AB7879423F28D58007F8018 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7879323F28D58007F8018 /* Podfile */; };
-		B5C7472623F2897D00B16C2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7472523F2897D00B16C2B /* AppDelegate.swift */; };
 		B5C7472823F2897D00B16C2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7472723F2897D00B16C2B /* ViewController.swift */; };
-		B5C7472B23F2897D00B16C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C7472923F2897D00B16C2B /* Main.storyboard */; };
 		B5C7472D23F2897E00B16C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5C7472C23F2897E00B16C2B /* Assets.xcassets */; };
 		B5C7473023F2897E00B16C2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C7472E23F2897E00B16C2B /* LaunchScreen.storyboard */; };
 		B5C7473B23F2897E00B16C2B /* UAFRoadNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7473A23F2897E00B16C2B /* UAFRoadNodeTests.swift */; };
@@ -41,13 +41,13 @@
 /* Begin PBXFileReference section */
 		7E988F724906A2BD4DCB1762 /* Pods-UAFRoadNode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAFRoadNode.release.xcconfig"; path = "Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode.release.xcconfig"; sourceTree = "<group>"; };
 		8A7271622404616E002DB500 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		8A7271722404B8B5002DB500 /* myMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myMapScreen.swift; sourceTree = "<group>"; };
 		8A7271DA2404F91B002DB500 /* showMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showMap.swift; sourceTree = "<group>"; };
+		8A740CAC242E8C2100A5436A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8A740CAE242E8DC700A5436A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8A740CB2242E8FA200A5436A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AB7879323F28D58007F8018 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B5C7472223F2897D00B16C2B /* UAFRoadNode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UAFRoadNode.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5C7472523F2897D00B16C2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5C7472723F2897D00B16C2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B5C7472A23F2897D00B16C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5C7472C23F2897E00B16C2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5C7472F23F2897E00B16C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5C7473123F2897E00B16C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,13 +132,13 @@
 		B5C7472423F2897D00B16C2B /* UAFRoadNode */ = {
 			isa = PBXGroup;
 			children = (
-				B5C7472523F2897D00B16C2B /* AppDelegate.swift */,
+				8A740CB2242E8FA200A5436A /* AppDelegate.swift */,
+				8A740CAC242E8C2100A5436A /* SceneDelegate.swift */,
 				B5C7472723F2897D00B16C2B /* ViewController.swift */,
-				B5C7472923F2897D00B16C2B /* Main.storyboard */,
+				8A740CAE242E8DC700A5436A /* Main.storyboard */,
 				B5C7472C23F2897E00B16C2B /* Assets.xcassets */,
 				B5C7472E23F2897E00B16C2B /* LaunchScreen.storyboard */,
 				B5C7473123F2897E00B16C2B /* Info.plist */,
-				8A7271722404B8B5002DB500 /* myMapScreen.swift */,
 				8A7271DA2404F91B002DB500 /* showMap.swift */,
 			);
 			path = UAFRoadNode;
@@ -271,7 +271,7 @@
 				B5C7473023F2897E00B16C2B /* LaunchScreen.storyboard in Resources */,
 				B5C7472D23F2897E00B16C2B /* Assets.xcassets in Resources */,
 				8AB7879423F28D58007F8018 /* Podfile in Resources */,
-				B5C7472B23F2897D00B16C2B /* Main.storyboard in Resources */,
+				8A740CAF242E8DC700A5436A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,9 +338,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */,
 				B5C7472823F2897D00B16C2B /* ViewController.swift in Sources */,
-				B5C7472623F2897D00B16C2B /* AppDelegate.swift in Sources */,
-				8A7271732404B8B5002DB500 /* myMapScreen.swift in Sources */,
+				8A740CB3242E8FA200A5436A /* AppDelegate.swift in Sources */,
 				8A7271DB2404F91B002DB500 /* showMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,14 +377,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B5C7472923F2897D00B16C2B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5C7472A23F2897D00B16C2B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B5C7472E23F2897E00B16C2B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -447,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -502,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -520,6 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H9X2M3TR;
 				INFOPLIST_FILE = UAFRoadNode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,6 +532,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H9X2M3TR;
 				INFOPLIST_FILE = UAFRoadNode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
