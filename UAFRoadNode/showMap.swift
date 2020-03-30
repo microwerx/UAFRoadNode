@@ -10,7 +10,7 @@ import GoogleMaps
 import GooglePlaces
 
 class showMap: UIViewController {
-
+    
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearch: UITextField!
     
@@ -19,14 +19,14 @@ class showMap: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         // GOOGLE MAPS SDK: COMPASS
         mapView.settings.compassButton = true
         
         // GOOGLE MAPS SDK: USER'S LOCATION
-         mapView.isMyLocationEnabled = true
-         mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
     }
     
     func gotoPlaces() {
@@ -39,33 +39,34 @@ class showMap: UIViewController {
 
 extension showMap: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-           guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-           print("locations = \(locValue.latitude) \(locValue.longitude)")
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
 }
 
 extension showMap: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-         print("Place name: \(String(describing: place.name))")
-       dismiss(animated: true, completion: nil)
-       
-       self.mapView.clear()
-       self.txtSearch.text = place.name
-    
-   
-       let cord2D = CLLocationCoordinate2D(latitude: (place.coordinate.latitude), longitude: (place.coordinate.longitude))
-       
-       let marker = GMSMarker()
-       marker.position =  cord2D
-       marker.title = place.name
-       marker.snippet = "node"
-       
-       let markerImage = UIImage(named: "node_pin")!
-       let markerView = UIImageView(image: markerImage)
-       marker.iconView = markerView
-       marker.map = self.mapView
-       
-       self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
+        print("Place name: \(String(describing: place.name))")
+        dismiss(animated: true, completion: nil)
+        
+        self.txtSearch.text = place.name
+        
+        let cord2D = CLLocationCoordinate2D(latitude: (place.coordinate.latitude), longitude: (place.coordinate.longitude))
+        
+        var markerArray = [GMSMarker]()
+        let marker = GMSMarker()
+        marker.position =  cord2D
+        marker.title = place.name
+        marker.snippet = "node"
+        
+        let markerImage = UIImage(named: "node_pin")!
+        let markerView = UIImageView(image: markerImage)
+        marker.iconView = markerView
+        marker.map = self.mapView
+        markerArray.append(marker)
+        
+        self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
+
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
