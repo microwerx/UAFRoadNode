@@ -74,7 +74,7 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
     }
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        
+        dismiss(animated: true, completion: nil)
     }
 }
 
