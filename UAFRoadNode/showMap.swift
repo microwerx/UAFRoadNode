@@ -17,6 +17,11 @@ class showMap: UIViewController {
     @IBAction func locationTapped(_ sender: Any) {
         gotoPlaces()
     }
+    
+    @IBAction func addNode(_ sender: Any) {
+        gotoPlaces()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
