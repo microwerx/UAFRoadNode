@@ -5,6 +5,7 @@
 //  Created by Nami Kim on 2/24/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 
+import Foundation
 import UIKit
 import GoogleMaps
 import GooglePlaces
@@ -40,6 +41,17 @@ class showMap: UIViewController {
         acController.delegate = self
         present(acController, animated: true, completion: nil)
     }
+    
+    func showAlert(title: String, message: String, handlerOK:((UIAlertAction) -> Void)?, handlerCancel:((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: . alert)
+        let action = UIAlertAction(title: "OK", style: .destructive, handler: handlerOK)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: handlerCancel)
+        alert.addAction(action)
+        alert.addAction(actionCancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension showMap: CLLocationManagerDelegate {
@@ -71,6 +83,7 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
         markerArray.append(marker)
         
         self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
+        self.mapView.delegate = self
 
     }
     
@@ -80,6 +93,14 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension showMap : GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
+        print("Clicked on marker")
+        showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in marker.map=nil }, handlerCancel: { actionCancel in print("Action cancel")
+        })
     }
 }
 
