@@ -258,7 +258,7 @@
         <!--Import Data-->
         <scene sceneID="IPb-GK-qdH">
             <objects>
-                <viewController id="D0J-Ne-I2G" sceneMemberID="viewController">
+                <viewController id="D0J-Ne-I2G" customClass="KMLViewController" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hS0-re-DFU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAd-J4-xdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="1173"/>
+            <point key="canvasLocation" x="1747.826086956522" y="1172.5446428571429"/>
         </scene>
         <!--Create Layer Type-->
         <scene sceneID="Gs5-0O-odt">

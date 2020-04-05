@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E91F36249BEB444FFFF1C20 /* libPods-UAFRoadNode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */; };
+		3B1783AEEBF94F9C1A4D00C3 /* Pods_UAFRoadNode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C025671108B7E27663761F95 /* Pods_UAFRoadNode.framework */; };
 		8A7271B22404C7B8002DB500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7271622404616E002DB500 /* CoreLocation.framework */; };
 		8A7271DB2404F91B002DB500 /* showMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7271DA2404F91B002DB500 /* showMap.swift */; };
 		8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A740CAC242E8C2100A5436A /* SceneDelegate.swift */; };
@@ -57,7 +57,7 @@
 		B5C7474123F2897E00B16C2B /* UAFRoadNodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UAFRoadNodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C7474523F2897E00B16C2B /* UAFRoadNodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAFRoadNodeUITests.swift; sourceTree = "<group>"; };
 		B5C7474723F2897E00B16C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UAFRoadNode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C025671108B7E27663761F95 /* Pods_UAFRoadNode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UAFRoadNode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F523469EF1F0FC0297D5135F /* Pods-UAFRoadNode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAFRoadNode.debug.xcconfig"; path = "Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A7271B22404C7B8002DB500 /* CoreLocation.framework in Frameworks */,
-				3E91F36249BEB444FFFF1C20 /* libPods-UAFRoadNode.a in Frameworks */,
+				3B1783AEEBF94F9C1A4D00C3 /* Pods_UAFRoadNode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7271622404616E002DB500 /* CoreLocation.framework */,
-				D805B5C80F89892BAC23DC83 /* libPods-UAFRoadNode.a */,
+				C025671108B7E27663761F95 /* Pods_UAFRoadNode.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
