@@ -258,7 +258,7 @@
         <!--Import Data-->
         <scene sceneID="IPb-GK-qdH">
             <objects>
-                <viewController id="D0J-Ne-I2G" customClass="KMLViewController" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="D0J-Ne-I2G" customClass="importFiles" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hS0-re-DFU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,6 +270,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdr-sv-HhC">
+                                <rect key="frame" x="171" y="231" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Import File"/>
+                                <connections>
+                                    <action selector="importData:" destination="D0J-Ne-I2G" eventType="touchUpInside" id="T2s-UP-H3S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="qQr-0Z-BYQ"/>
@@ -321,6 +329,6 @@
         <image name="square.stack.3d.up" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lKy-xI-Tx3"/>
+        <segue reference="tXn-Hn-dqQ"/>
     </inferredMetricsTieBreakers>
 </document>
