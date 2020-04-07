@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--UAF Friendly GIS Home -->
+        <!--Home -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="UAF Friendly GIS Home " id="Lns-Eb-aXE"/>
+                    <navigationItem key="navigationItem" title="Home " id="Lns-Eb-aXE"/>
                     <connections>
                         <outlet property="lblLocation" destination="vNJ-gA-0uD" id="dhG-XD-y9d"/>
                     </connections>
@@ -47,7 +47,36 @@
             </objects>
             <point key="canvasLocation" x="897.10144927536237" y="75.669642857142847"/>
         </scene>
-        <!--Google Maps-->
+        <!--Select Layers-->
+        <scene sceneID="ztt-tQ-rIe">
+            <objects>
+                <viewController id="00g-DH-xiu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zrs-pH-QBi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3p-ki-5zp">
+                                <rect key="frame" x="20" y="106" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dummy Layer Switch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8f-1d-7CW">
+                                <rect key="frame" x="75" y="111" width="161" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ymc-qC-Erz"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Layers" id="2L1-4C-Bmj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Odv-mS-p0W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2567" y="-303"/>
+        </scene>
+        <!--Show Map-->
         <scene sceneID="zck-Zl-8us">
             <objects>
                 <viewController id="zZI-MP-TaM" customClass="showMap" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,7 +119,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Oh-oG-Vhq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Google Maps" id="tNs-gf-0kM"/>
+                    <navigationItem key="navigationItem" id="tNs-gf-0kM">
+                        <rightBarButtonItems>
+                            <barButtonItem title="menu" image="ellipsis" catalog="system" id="Soy-4e-bEt">
+                                <connections>
+                                    <segue destination="AmB-2M-HYh" kind="show" id="bYm-4f-b0B"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="stack" image="square.stack.3d.up" catalog="system" id="id9-Cs-Bf9">
+                                <connections>
+                                    <segue destination="00g-DH-xiu" kind="show" id="lKy-xI-Tx3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="pin" image="mappin" catalog="system" id="ccw-D6-CHu">
+                                <connections>
+                                    <action selector="addNode:" destination="zZI-MP-TaM" id="XIH-ZE-Hb5"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Swi-9S-0rA" id="lpv-ip-sDA"/>
                         <outlet property="txtSearch" destination="pj4-Mq-dnP" id="S1v-jR-yHv"/>
@@ -98,7 +145,164 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRI-1c-QfB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1739.1304347826087" y="66.964285714285708"/>
+            <point key="canvasLocation" x="1749" y="-303"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="gsH-hY-l9y">
+            <objects>
+                <viewController id="AmB-2M-HYh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ns9-zT-yfj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r3M-jM-NUL">
+                                <rect key="frame" x="20" y="102" width="374" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="Transit"/>
+                                    <segment title="Satellite"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-zr-xwV">
+                                <rect key="frame" x="20" y="141" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Layers"/>
+                                <connections>
+                                    <segue destination="00g-DH-xiu" kind="show" id="tXn-Hn-dqQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXQ-Gf-1n6">
+                                <rect key="frame" x="20" y="179" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create Layer Type"/>
+                                <connections>
+                                    <segue destination="VK4-4T-V8P" kind="show" id="ffP-Vz-5Sd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-Jn-5pH">
+                                <rect key="frame" x="20" y="217" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Layer Name"/>
+                                <connections>
+                                    <segue destination="OSX-r9-rZe" kind="show" id="7ke-SO-y3j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aD-zQ-AaI">
+                                <rect key="frame" x="20" y="255" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Import Data"/>
+                                <connections>
+                                    <segue destination="D0J-Ne-I2G" kind="show" id="CAJ-Z1-Xs9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7Y-WP-q3i">
+                                <rect key="frame" x="20" y="293" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Export Data"/>
+                                <connections>
+                                    <segue destination="c3y-cJ-9HH" kind="show" id="YSv-jv-siQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iR6-5L-AiY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menu" id="rpM-qk-u8c"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nTI-e2-f6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="446"/>
+        </scene>
+        <!--Edit Layer Name-->
+        <scene sceneID="4PB-tv-O5i">
+            <objects>
+                <viewController id="OSX-r9-rZe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WwE-m0-nvF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="o6e-a7-tdx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Layer Name" id="1H9-J7-M0T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-cT-rgU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2567" y="446"/>
+        </scene>
+        <!--Export Data-->
+        <scene sceneID="b5d-5w-RGX">
+            <objects>
+                <viewController id="c3y-cJ-9HH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o8v-BG-1X4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Export Data Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqL-GY-w6p">
+                                <rect key="frame" x="140" y="438" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2cG-1o-NXE"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Export Data" id="CWX-bX-uEV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoY-14-1mI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="897" y="1173"/>
+        </scene>
+        <!--Import Data-->
+        <scene sceneID="IPb-GK-qdH">
+            <objects>
+                <viewController id="D0J-Ne-I2G" customClass="importFiles" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hS0-re-DFU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Import Data Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-SG-Owy">
+                                <rect key="frame" x="140" y="438" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdr-sv-HhC">
+                                <rect key="frame" x="171" y="231" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Import File"/>
+                                <connections>
+                                    <action selector="importData:" destination="D0J-Ne-I2G" eventType="touchUpInside" id="T2s-UP-H3S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qQr-0Z-BYQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Import Data" id="xnr-b1-BkI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAd-J4-xdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747.826086956522" y="1172.5446428571429"/>
+        </scene>
+        <!--Create Layer Type-->
+        <scene sceneID="Gs5-0O-odt">
+            <objects>
+                <viewController id="VK4-4T-V8P" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S3N-x8-zYw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="FLQ-LI-JBb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Layer Type" id="jCL-a2-bvH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDx-JZ-uBk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2567" y="1173"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TR0-kl-M8g">
@@ -119,4 +323,12 @@
             <point key="canvasLocation" x="-13.043478260869566" y="75.669642857142847"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ellipsis" catalog="system" width="64" height="18"/>
+        <image name="mappin" catalog="system" width="52" height="64"/>
+        <image name="square.stack.3d.up" catalog="system" width="64" height="62"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tXn-Hn-dqQ"/>
+    </inferredMetricsTieBreakers>
 </document>
