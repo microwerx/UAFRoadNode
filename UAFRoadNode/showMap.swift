@@ -58,6 +58,22 @@ extension showMap: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        ////////////////////DEBUGGING
+        let databaseFileName = "database.sqlite"
+         
+        var pathToDatabase: String!
+         
+        var database: FMDatabase!
+        
+        let documentsDirectory = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString) as String
+        pathToDatabase = documentsDirectory.appending("/\(databaseFileName)")
+        
+        print(documentsDirectory)
+        print(pathToDatabase)
+        
+        //////////////////End DEBUGGING
+        
     }
 }
 
