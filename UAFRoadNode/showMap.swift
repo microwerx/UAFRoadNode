@@ -33,6 +33,9 @@ class showMap: UIViewController {
         // GOOGLE MAPS SDK: USER'S LOCATION
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        
+        // GOOGLE MAPS SDK: ALLOW TRAFFIC INFORMATION 
+        mapView.isTrafficEnabled = true
     }
     
     func gotoPlaces() {
