@@ -34,17 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print("Testing 1, 2")
-        if DBManager.shared.createDatabase() {
-            DBManager.shared.insertIntoLayerTable()
-        }
-        else {
-            print("Failed to create database")
-        }
-    }
     
-    func applicationDidEnterBackground(_ application: UIApplication){
-        print("Entering background")
-    }
+    
 }
