@@ -198,4 +198,62 @@ class DBManager: NSObject {
         database.close()
     }
     
+    
+    func selectLayersQuery() {
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_layers_id), \(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash) FROM layers"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    let id = rsMain?.string(forColumn: field_layers_id)
+                    let name = rsMain?.string(forColumn: field_layers_name)
+                    let date = rsMain?.string(forColumn: field_layers_creationDate)
+                    let crypto = rsMain?.string(forColumn: field_layers_crypto)
+                    let cryptoKey = rsMain?.string(forColumn: field_layers_cryptoKey)
+                    let md5Hash = rsMain?.string(forColumn: field_layers_md5Hash)
+                    print(" layers.id: \(id!)\n layers.name: \(name!)\n layers.date: \(date!)\n layers.crypto: \(crypto!)\n layers.cryptoKey: \(cryptoKey!)\n layers.md5Hash: \(md5Hash!)")
+                }
+            }
+        }
+        database.close()
+    }
+    
+    //TODO This is not actually working... it checks if
+    // the date is formatted correctly but allows things
+    // like 89-67-2019
+    func date_is_valid(strDate: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "mm-dd-yyyy"
+        let dateObj = dateFormatter.date(from: strDate)
+        print("dateObj: \(dateObj)")
+        return (dateObj != nil)
+    }
+    
+    
+    func addLayerType(attr: [String: String]) {
+        if openDatabase() {
+            if date_is_valid(strDate: attr[field_layers_creationDate]!) {
+                do {
+                    var empty = false
+                    for (_, val) in attr {
+                        if val.count == 0 {
+                            empty = true
+                        }
+                    }
+                    if !empty {
+                        let query = "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash)) VALUES (\"\(attr[field_layers_name] ?? "")\", \"\(attr[field_layers_creationDate] ?? "")\", \"\(attr[field_layers_crypto] ?? "")\", \"\(attr[field_layers_cryptoKey] ?? "")\", \"\(attr[field_layers_md5Hash] ?? "")\");"
+                        
+                        if !database.executeStatements(query) {
+                        print("Failed to insert new layer type")
+                            print(database.lastError(), database.lastErrorMessage())
+                        }
+                    }
+                    else{
+                        print("Error: passed null value/s in dict to addLayerType")
+                    }
+                }
+            }
+        }
+        database.close()
+    }
 }

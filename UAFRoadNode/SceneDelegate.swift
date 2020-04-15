@@ -29,17 +29,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        print("Testing 1, 2")
+        var layer_attr = ["name": "UFO Sightings", "creation_date": "12-30-1956", "crypto": "sfegwfewe", "crypto_key": "ewefwevew2334546574rg43ed2d", "md5_hash": "regwerg3434565344t5reg4ef"]
         if DBManager.shared.createDatabase() {
             DBManager.shared.insertTestRow()
-            //DBManager.shared.add_sample_rows()
+            DBManager.shared.addLayerType(attr: layer_attr)
             DBManager.shared.execTestQuery()
+            DBManager.shared.selectLayersQuery()
     
         }
         else {
             print("Failed to create database")
         }
     }
+    
+    let field_layers_id = "id"
+    let field_layers_name = "name"
+    let field_layers_creationDate = "creation_date"
+    let field_layers_crypto = "crypto"
+    let field_layers_cryptoKey = "crypto_key"
+    let field_layers_md5Hash = "md5_hash"
     
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
