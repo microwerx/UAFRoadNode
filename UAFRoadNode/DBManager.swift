@@ -225,7 +225,7 @@ class DBManager: NSObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm-dd-yyyy"
         let dateObj = dateFormatter.date(from: strDate)
-        print("dateObj: \(dateObj)")
+        print("dateObj: \(String(describing: dateObj))")
         return (dateObj != nil)
     }
     
