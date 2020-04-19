@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var lblLocation: UILabel!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

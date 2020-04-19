@@ -24,9 +24,8 @@ class DBManager: NSObject {
     let field_valueTypes_name = "name"
     let field_valueTypes_DataType = "data_type"
     
-    //let field_units_id = "id"
-    //let field_units_name = "name"
-    //let field_units_valueTypeID = "value_type_id"
+    let field_dataTypes_id = "id"
+    let field_dataTypes_name = "name"
     
     let field_nodes_id = "id"
     let field_nodes_name = "name"
@@ -66,7 +65,7 @@ class DBManager: NSObject {
         var created = false
         
         // Uncomment if statement below to delete the database for development
-        
+        /*
         if FileManager.default.fileExists(atPath: pathToDatabase) {
             do {
                 print("Deleting db")
@@ -77,6 +76,8 @@ class DBManager: NSObject {
                 print(error.localizedDescription)
             }
         }
+        return true
+        */
         
         if !FileManager.default.fileExists(atPath: pathToDatabase) {
             print("Creating empty database")
@@ -88,9 +89,9 @@ class DBManager: NSObject {
                 print("Opened FMDatabase")
                 let createLayersTableQuery = "CREATE TABLE layers (\(field_layers_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_layers_name) VARCHAR(45) NOT NULL, \(field_layers_creationDate) DATETIME NOT NULL, \(field_layers_crypto) VARCHAR(45), \(field_layers_cryptoKey) VARCHAR(45), \(field_layers_md5Hash) VARCHAR(45), UNIQUE (\(field_layers_name)));"
                 
-                let createValueTypesTable = "CREATE TABLE value_types (\(field_valueTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_valueTypes_name) VARCHAR(45) NOT NULL, \(field_valueTypes_DataType) VARCHAR(45) NOT NULL, UNIQUE (\(field_valueTypes_name)));"
+                let createValueTypesTableQuery = "CREATE TABLE value_types (\(field_valueTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_valueTypes_name) VARCHAR(45) NOT NULL, \(field_valueTypes_DataType) VARCHAR(45) NOT NULL, UNIQUE (\(field_valueTypes_name)));"
                 
-                //let createUnitsTableQuery = "CREATE TABLE units (\(field_units_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_units_name) VARCHAR(45) NOT NULL, \(field_units_valueTypeID) INTEGER REFERENCES value_type(\(field_valueTypes_id)) ON UPDATE CASCADE, UNIQUE (\(field_units_name)));"
+                let createDataTypesTableQuery = "CREATE TABLE data_types (\(field_dataTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_dataTypes_name) VARCHAR(45) NOT NULL, UNIQUE (\(field_dataTypes_name)));"
                 
                 let createNodesTableQuery = "CREATE TABLE nodes (\(field_nodes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_nodes_name) VARCHAR(45) NOT NULL, \(field_nodes_lat) DECIMAL(9, 6) NOT NULL, \(field_nodes_long) DECIMAL(9, 6) NOT NULL, \(field_nodes_layerName) VARCHAR(45) REFERENCES layers(\(field_layers_name)) ON UPDATE CASCADE);"
                 
@@ -99,7 +100,7 @@ class DBManager: NSObject {
                 let createDataPointTableQuery = "CREATE TABLE data_point (\(field_data_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_data_integerValue) INTEGER, \(field_data_textValue) TEXT, \(field_data_real_value) REAL, \(field_data_numeric_value) NUMERIC, \(field_data_dateTimeAdded) DATETIME NOT NULL, \(field_data_attrID) INTEGER REFERENCES attributes(\(field_attributes_id)) ON UPDATE CASCADE, \(field_data_nodeID) INTEGER REFERENCES nodes(\(field_nodes_id)) ON UPDATE CASCADE);"
         
                 
-                let create_table_queries: [String] = [createLayersTableQuery, createValueTypesTable, createNodesTableQuery, createAttributesTableQuery, createDataPointTableQuery]
+                let create_table_queries: [String] = [createLayersTableQuery, createValueTypesTableQuery, createDataTypesTableQuery, createNodesTableQuery, createAttributesTableQuery, createDataPointTableQuery]
                 
                 
                 // Add the tables
@@ -112,6 +113,16 @@ class DBManager: NSObject {
                     catch {
                         print("Could not create table with query: \(query).")
                         print(error.localizedDescription)
+                    }
+                }
+                
+                // Fill the data_types table
+                let dataTypes = ["\"INTEGER\"", "\"REAL\"", "\"TEXT\"", "\"BLOB\""]
+                for type in dataTypes {
+                    let dataTypesQuery = "INSERT INTO data_types (\(field_dataTypes_name)) VALUES (\(type));"
+                    if !database.executeStatements(dataTypesQuery) {
+                    print("Failed to insert \(type) into data_types table")
+                        print(database.lastError(), database.lastErrorMessage())
                     }
                 }
                 database.close()
@@ -142,6 +153,7 @@ class DBManager: NSObject {
         return false
     }
     
+
     
     func insertTestRow() {
         // Open the database.
@@ -232,28 +244,31 @@ class DBManager: NSObject {
     
     func addLayerType(attr: [String: String]) {
         if openDatabase() {
-            if date_is_valid(strDate: attr[field_layers_creationDate]!) {
-                do {
-                    var empty = false
-                    for (_, val) in attr {
-                        if val.count == 0 {
-                            empty = true
-                        }
-                    }
-                    if !empty {
-                        let query = "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash)) VALUES (\"\(attr[field_layers_name] ?? "")\", \"\(attr[field_layers_creationDate] ?? "")\", \"\(attr[field_layers_crypto] ?? "")\", \"\(attr[field_layers_cryptoKey] ?? "")\", \"\(attr[field_layers_md5Hash] ?? "")\");"
-                        
-                        if !database.executeStatements(query) {
-                        print("Failed to insert new layer type")
-                            print(database.lastError(), database.lastErrorMessage())
-                        }
-                    }
-                    else{
-                        print("Error: passed null value/s in dict to addLayerType")
+            
+            do {
+                var empty = false
+                for (_, val) in attr {
+                    if val.count == 0 {
+                        empty = true
                     }
                 }
+                if !empty {
+                    let query = "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash)) VALUES (\"\(attr[field_layers_name] ?? "")\", \"\(attr[field_layers_creationDate] ?? "")\", \"\(attr[field_layers_crypto] ?? "")\", \"\(attr[field_layers_cryptoKey] ?? "")\", \"\(attr[field_layers_md5Hash] ?? "")\");"
+                    
+                    if !database.executeStatements(query) {
+                    print("Failed to insert new layer type")
+                        print(database.lastError(), database.lastErrorMessage())
+                    }
+                }
+                else{
+                    print("Error: passed null value/s in dict to addLayerType")
+                }
             }
+            
         }
         database.close()
+ 
     }
+    
+ 
 }
