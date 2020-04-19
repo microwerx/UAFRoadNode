@@ -24,8 +24,10 @@ class DBManager: NSObject {
     let field_valueTypes_name = "name"
     let field_valueTypes_DataType = "data_type"
     
+    /*
     let field_dataTypes_id = "id"
     let field_dataTypes_name = "name"
+    */
     
     let field_nodes_id = "id"
     let field_nodes_name = "name"
@@ -91,8 +93,9 @@ class DBManager: NSObject {
                 
                 let createValueTypesTableQuery = "CREATE TABLE value_types (\(field_valueTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_valueTypes_name) VARCHAR(45) NOT NULL, \(field_valueTypes_DataType) VARCHAR(45) NOT NULL, UNIQUE (\(field_valueTypes_name)));"
                 
+                /*
                 let createDataTypesTableQuery = "CREATE TABLE data_types (\(field_dataTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_dataTypes_name) VARCHAR(45) NOT NULL, UNIQUE (\(field_dataTypes_name)));"
-                
+                */
                 let createNodesTableQuery = "CREATE TABLE nodes (\(field_nodes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_nodes_name) VARCHAR(45) NOT NULL, \(field_nodes_lat) DECIMAL(9, 6) NOT NULL, \(field_nodes_long) DECIMAL(9, 6) NOT NULL, \(field_nodes_layerName) VARCHAR(45) REFERENCES layers(\(field_layers_name)) ON UPDATE CASCADE);"
                 
                 let createAttributesTableQuery = "CREATE TABLE attributes (\(field_attributes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_attributes_name) VARCHAR(45) NOT NULL, \(field_attributes_layerName) VARCHAR(45) REFERENCES layers(\(field_layers_name)) ON UPDATE CASCADE, \(field_attributes_valueTypeID) INTEGER REFERENCES units(\(field_valueTypes_id)) ON UPDATE CASCADE);"
@@ -100,7 +103,7 @@ class DBManager: NSObject {
                 let createDataPointTableQuery = "CREATE TABLE data_point (\(field_data_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_data_integerValue) INTEGER, \(field_data_textValue) TEXT, \(field_data_real_value) REAL, \(field_data_numeric_value) NUMERIC, \(field_data_dateTimeAdded) DATETIME NOT NULL, \(field_data_attrID) INTEGER REFERENCES attributes(\(field_attributes_id)) ON UPDATE CASCADE, \(field_data_nodeID) INTEGER REFERENCES nodes(\(field_nodes_id)) ON UPDATE CASCADE);"
         
                 
-                let create_table_queries: [String] = [createLayersTableQuery, createValueTypesTableQuery, createDataTypesTableQuery, createNodesTableQuery, createAttributesTableQuery, createDataPointTableQuery]
+                let create_table_queries: [String] = [createLayersTableQuery, createValueTypesTableQuery, createNodesTableQuery, createAttributesTableQuery, createDataPointTableQuery]
                 
                 
                 // Add the tables
@@ -116,6 +119,7 @@ class DBManager: NSObject {
                     }
                 }
                 
+                /*
                 // Fill the data_types table
                 let dataTypes = ["\"INTEGER\"", "\"REAL\"", "\"TEXT\"", "\"BLOB\""]
                 for type in dataTypes {
@@ -124,7 +128,7 @@ class DBManager: NSObject {
                     print("Failed to insert \(type) into data_types table")
                         print(database.lastError(), database.lastErrorMessage())
                     }
-                }
+                } */
                 database.close()
             }
             else {
@@ -241,6 +245,7 @@ class DBManager: NSObject {
         return (dateObj != nil)
     }
     
+
     
     func addLayerType(attr: [String: String]) {
         if openDatabase() {
