@@ -12,15 +12,16 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
     
 
     
-    @IBOutlet var value_type_name: [UITextField]!
+
     
 
     @IBOutlet weak var myTableView: UITableView!
     
-    let dataTypes = ["\"INTEGER\"", "\"REAL\"", "\"TEXT\"", "\"BLOB\""]
+    let dataTypes = ["INTEGER", "REAL", "TEXT", "BLOB"]
     
+   
+    @IBOutlet weak var value_type_name: UITextField!
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +31,25 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func submit(_ sender: Any) {
+    //private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> String {
+    //    return self.dataTypes[indexPath.row]
+   //}
+    var selectedDatatype = ""
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedDatatype = dataTypes[indexPath.row]
+    }
+    
+        
+    
+    
+  
+    @IBAction func submit(_ sender: UIButton) {
+        let value_type_attr = ["name": value_type_name.text!, "data_type": selectedDatatype]
+        
+        DBManager.shared.addValueType(attr: value_type_attr)
+        DBManager.shared.selectValueTypeQuery()
+        
     }
     
     

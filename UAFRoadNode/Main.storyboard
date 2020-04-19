@@ -286,7 +286,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
-                                    <action selector="submit:" destination="WRh-ar-9BA" eventType="touchUpInside" id="z5U-mo-dff"/>
+                                    <action selector="submit:" destination="WRh-ar-9BA" eventType="touchUpInside" id="IHE-du-DZf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -296,7 +296,7 @@
                     <navigationItem key="navigationItem" title="Add New Value Type" id="F5a-7y-1bj"/>
                     <connections>
                         <outlet property="myTableView" destination="Lcx-5P-xsU" id="cKU-ke-vWA"/>
-                        <outletCollection property="value_type_name" destination="515-nY-S7r" collectionClass="NSMutableArray" id="xd3-9S-wag"/>
+                        <outlet property="value_type_name" destination="515-nY-S7r" id="kn3-s3-aV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITc-d6-NBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
