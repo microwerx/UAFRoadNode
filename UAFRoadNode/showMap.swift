@@ -55,12 +55,31 @@ class showMap: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    let locationManager = CLLocationManager()
+    
+    func getCurrentLocation() {
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
 }
+
 
 extension showMap: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //lblLocation.text = "latitude = \(locValue.latitude), longitude = \(locValue.longitude)"
+        
     }
 }
 
