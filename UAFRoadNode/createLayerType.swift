@@ -14,6 +14,36 @@ class createLayerType: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var attributes = [String]()
+    
+    
+    @IBAction func addNewLayerType(_ sender: UIButton) {
+        let layer_attr = ["name": addLayerTextField.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test"]
+        
+        DBManager.shared.addLayerType(attr: layer_attr)
+        DBManager.shared.selectLayersQuery()
+        
+    }
+   
+    
+    
+    
+    
+    func getDate() -> String {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let formattedDate = format.string(from: date)
+        print(formattedDate)
+        return(formattedDate)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    
+
+        // Do any additional setup after loading the view.
+    }
 
     @IBAction func addAttributeButton(_ sender: Any) {
         let alert = UIAlertController(title: "Add Attribute", message: nil, preferredStyle: .alert)
