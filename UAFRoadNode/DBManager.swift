@@ -53,6 +53,8 @@ class DBManager: NSObject {
      
     var database: FMDatabase!
     
+    var layerNames = [String]()
+    
     override init() {
         super.init()
      
@@ -224,6 +226,21 @@ class DBManager: NSObject {
                     let cryptoKey = rsMain?.string(forColumn: field_layers_cryptoKey)
                     let md5Hash = rsMain?.string(forColumn: field_layers_md5Hash)
                     print(" layers.id: \(id!)\n layers.name: \(name!)\n layers.date: \(date!)\n layers.crypto: \(crypto!)\n layers.cryptoKey: \(cryptoKey!)\n layers.md5Hash: \(md5Hash!)")
+                }
+            }
+        }
+        database.close()
+    }
+    
+    func displayLayerNames() {
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_layers_name) FROM layers"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    let name = rsMain?.string(forColumn: field_layers_name)
+                    layerNames.append(name!)
+                    print("layers.name: \(name!)\n")
                 }
             }
         }

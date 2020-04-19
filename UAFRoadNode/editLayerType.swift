@@ -7,10 +7,15 @@
 
 import UIKit
 
-var layerNameArray = ["Layer1", "Layer2", "Layer3"]
+var layerNameArray = [String]()
 var myIndex = 0
+func getData() {
+    DBManager.shared.displayLayerNames()
+    layerNameArray = DBManager.shared.layerNames
+}
 
 class editLayerType: UIViewController {
+    
     
     
     var searchedLayer = [String]()
@@ -20,6 +25,7 @@ class editLayerType: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         layerSearch.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
