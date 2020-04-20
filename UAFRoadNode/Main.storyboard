@@ -299,7 +299,7 @@
             <objects>
                 <viewController id="OSX-r9-rZe" customClass="editLayerType" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WwE-m0-nvF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" text="" placeholder="Choose A Layer Name To Edit" translatesAutoresizingMaskIntoConstraints="NO" id="22Y-fj-Gzd">
@@ -308,7 +308,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VEL-SS-g6K">
-                                <rect key="frame" x="0.0" y="132" width="414" height="678"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -334,7 +334,7 @@
                     <connections>
                         <outlet property="layerSearch" destination="22Y-fj-Gzd" id="Sx4-q5-AJH"/>
                         <outlet property="tableView" destination="VEL-SS-g6K" id="FGR-5S-iTy"/>
-                        <segue destination="17J-Qc-sLB" kind="showDetail" identifier="editLayerSegue" id="Oi7-X9-suX"/>
+                        <segue destination="17J-Qc-sLB" kind="show" identifier="editLayerSegue" id="1OE-4u-nbS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-cT-rgU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -346,7 +346,7 @@
             <objects>
                 <viewController id="17J-Qc-sLB" customClass="editLayerDetail" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LYq-b7-Ixx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-3T-X0Q">
@@ -360,8 +360,9 @@
                         <color key="backgroundColor" red="0.88227481159999999" green="0.97043256960000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="s8U-st-Gpr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="J1m-C5-Q7N"/>
                     <connections>
-                        <segue destination="OSX-r9-rZe" kind="showDetail" id="ZL7-Qg-lsP"/>
+                        <outlet property="layerName" destination="RZ3-3T-X0Q" id="osx-mD-1Ef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8de-UX-rmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -725,7 +726,6 @@
         <image name="square.stack.3d.up" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZL7-Qg-lsP"/>
         <segue reference="tXn-Hn-dqQ"/>
     </inferredMetricsTieBreakers>
 </document>
