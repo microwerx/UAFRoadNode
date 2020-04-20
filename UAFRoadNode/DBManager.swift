@@ -61,8 +61,10 @@ class DBManager: NSObject {
     func createDatabase() -> Bool {
         var created = false
         
-        // Uncomment if statement below to delete the database for development
-        /*
+        // Uncomment the block comment below to delete the database for development
+        // Remember to recomment the if-block or you will continually delete and rebuild the database
+        
+        /*   ////
         if FileManager.default.fileExists(atPath: pathToDatabase) {
             do {
                 print("Deleting db")
@@ -73,8 +75,7 @@ class DBManager: NSObject {
                 print(error.localizedDescription)
             }
         }
-        return true
-        */
+        */  //////////
         
         if !FileManager.default.fileExists(atPath: pathToDatabase) {
             print("Creating empty database")
