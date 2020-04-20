@@ -160,25 +160,6 @@ class DBManager: NSObject {
         database.close()
     }
     
-
-    /*
-    func add_sample_rows() {
-        if openDatabase() {
-        do {
-            let insert_layers = "INSERT INTO layers (\(field_layers_name), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_creationDate), \(field_layers_md5Hash)) VALUES (\"Traffic Accidents\", \"kjhkjhkj\", \"awd6ffdfdg6fg5f6566s5fd\", \"10-13-19\");"
-            
-            let insert_value_types = "INSERT INTO value_types (\(field_valueTypes_name), \(field_valueTypes_DataType)) VALUES (\"mph\", \"INTEGER\");"
-            }
-            
-            let insert_nodes = "INSERT INTO nodes (\(field_nodes_name), \(field_nodes_lat), \(field_nodes_long), \(field_nodes_layerName)) VALUES (\"University Ave. and College Rd.\", 64.8557, -147.8131, \"Traffic_Accidents\");"
-            
-            let insert_attributes = "INSERT INTO attributes (\(field_attributes_name), \(field_attributes_valueTypeID), \(field_attributes_layerName) VALUES (\"speed\", 1, \"Traffic Accidents\");"
-            
-            let insert_data_point = "INSERT INTO data_point (\(field_data_attrID), \(field_data_nodeID), \(field_data_integerValue), \(field_data_dateTimeAdded));"
-        }
-        
-    }
-    */
     
     func execTestQuery() {
         if openDatabase() {
@@ -197,10 +178,12 @@ class DBManager: NSObject {
     }
     
     
+    // SELECT * Queries //
+    
     func selectLayersQuery() {
         if openDatabase() {
             do {
-                let query = "SELECT \(field_layers_id), \(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash) FROM layers"
+                let query = "SELECT * FROM layers"
                 let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
                 while (rsMain!.next() == true) {
                     let id = rsMain?.string(forColumn: field_layers_id)
@@ -233,9 +216,68 @@ class DBManager: NSObject {
         
     }
     
+    func selectAttributesQuery() {
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM attributes"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    let id = rsMain?.string(forColumn: field_attributes_id)
+                    let name = rsMain?.string(forColumn: field_attributes_name)
+                    let layer_name = rsMain?.string(forColumn: field_attributes_layerName)
+                    let value_type_id = rsMain?.string(forColumn: field_attributes_valueTypeID)
+                    print(" attributes.id: \(id!)\n attributes.name: \(name!)\n attributes.layer_name: \(layer_name!)\n attributes.value_type_id: \(value_type_id!)\n")
+                  }
+            }
+        }
+        database.close()
+        
+    }
+    
+    // Other select Queries
+    
+    func selectValueTypeNames() -> Array<String> {
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM value_types;"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: ([]))
+                var ids = [String]()
+                while (rsMain!.next() == true) {
+                    ids.append((rsMain?.string(forColumn: field_valueTypes_name))!)
+                }
+                database.close()
+                return ids
+            }
+        }
+        return [""]
+    }
+        
+    
+    func valueTypeIDFromName(name: String) -> Int32 {
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM value_types WHERE \(field_valueTypes_name) = \"\(name)\";"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                print(query)
+                let id = rsMain?.int(forColumn: field_valueTypes_id)
+                database.close()
+                return id!
+                }
+        }
+        return -1
+    }
+    
+    
+    func selectValueTypeName(id: Int32) -> String {
+        let query = "SELECT \(field_valueTypes_name) FROM value_types WHERE \(field_valueTypes_id) = \(id);"
+        let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+        let name = rsMain?.string(forColumn: field_valueTypes_name)
+        return name!
+    }
+    
     //TODO This is not actually working... it checks if
     // the date is formatted correctly but allows things
-    // like 89-67-2019
+    // like 89-67-2019 and there is a string interpolation error
     func date_is_valid(strDate: String) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm-dd-yyyy"
@@ -307,5 +349,26 @@ class DBManager: NSObject {
            database.close()
     
        }
-
+    
+    
+    
+    
+    func addAttribute(attr: [String: Any]) {
+           if openDatabase() {
+               
+               do {
+                   // check that there is a value for each attribute
+                
+                   let query = "INSERT INTO attributes (\(field_attributes_name), \(field_attributes_layerName), \(field_attributes_valueTypeID)) VALUES (\"\(attr[field_attributes_name] ?? "")\", \"\(attr[field_attributes_layerName] ?? "")\", \"\(attr[field_attributes_valueTypeID] ?? -1)\");"
+                   
+                   if !database.executeStatements(query) {
+                       print("Failed to insert new atrtribute type")
+                       print(database.lastError(), database.lastErrorMessage())
+                   
+                   }
+               }
+           }
+           database.close()
+       }
 }
+

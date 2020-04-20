@@ -31,18 +31,11 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view.
     }
     
-    //private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> String {
-    //    return self.dataTypes[indexPath.row]
-   //}
     var selectedDatatype = ""
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedDatatype = dataTypes[indexPath.row]
     }
-    
-        
-    
-    
   
     @IBAction func submit(_ sender: UIButton) {
         let value_type_attr = ["name": value_type_name.text!, "data_type": selectedDatatype]
