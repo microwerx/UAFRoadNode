@@ -140,44 +140,6 @@ class DBManager: NSObject {
     }
     
 
-    
-    func insertTestRow() {
-        // Open the database.
-        var query = ""
-        if openDatabase() {
-            query += "INSERT INTO value_types (\(field_valueTypes_name), \(field_valueTypes_dataType)) VALUES (\"mph\", \"INTEGER\");"
-            //query += "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash)) VALUES ('test', 103019, 'crypto', 'cryptokey', 'gg34hj5g3jh4g5hj3g4jh5g');"
-            do {
-                if !database.executeStatements(query) {
-                print("Failed to insert initial data into the database.")
-                    print(database.lastError(), database.lastErrorMessage())
-                }
-            }
-            //catch {
-            //        print(error.localizedDescription)
-            //    }
-        }
-        database.close()
-    }
-    
-    
-    func execTestQuery() {
-        if openDatabase() {
-            do {
-                let mainQuery = "SELECT \(field_valueTypes_id), \(field_valueTypes_name), \(field_valueTypes_dataType) FROM value_types"
-                let rsMain: FMResultSet? = database.executeQuery(mainQuery, withArgumentsIn: [])
-                while (rsMain!.next() == true) {
-                    let id = rsMain?.string(forColumn: field_valueTypes_id)
-                    let name = rsMain?.string(forColumn: field_valueTypes_name)
-                    let data_type = rsMain?.string(forColumn: field_valueTypes_dataType)
-                    print(" value_types.id: \(id!)\n value_types.name: \(name!)\n value_types.data_type: \(data_type!)")
-                }
-            }
-        }
-        database.close()
-    }
-    
-    
     // SELECT * Queries //
     
     func selectLayersQuery() {
@@ -259,9 +221,13 @@ class DBManager: NSObject {
                 let query = "SELECT * FROM value_types WHERE \(field_valueTypes_name) = \"\(name)\";"
                 let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
                 print(query)
-                let id = rsMain?.int(forColumn: field_valueTypes_id)
+                var id = Int32()
+                while (rsMain!.next() == true) {
+                    id = rsMain?.int(forColumn: field_valueTypes_id) ?? -1
+                }
                 database.close()
-                return id!
+                print(id)
+                return id
                 }
         }
         return -1
@@ -269,10 +235,16 @@ class DBManager: NSObject {
     
     
     func selectValueTypeName(id: Int32) -> String {
-        let query = "SELECT \(field_valueTypes_name) FROM value_types WHERE \(field_valueTypes_id) = \(id);"
-        let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
-        let name = rsMain?.string(forColumn: field_valueTypes_name)
-        return name!
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM value_types WHERE \(field_valueTypes_id) = \(id);"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                let name = rsMain?.string(forColumn: field_valueTypes_name)
+                database.close()
+                return name!
+                }
+        }
+        return ""
     }
     
     //TODO This is not actually working... it checks if

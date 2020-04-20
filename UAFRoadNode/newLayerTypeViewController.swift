@@ -32,27 +32,26 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         
         for attr in attribute_query_dicts {
             DBManager.shared.addAttribute(attr: attr)
-            print("adding an attr")
         }
         DBManager.shared.selectAttributesQuery()
         
     }
     
+    
     @IBAction func addAttribute(_ sender: UIButton) {
         let attributes_attr = ["name": attribute_name.text!, "layer_name": layer_name.text!, "value_type_id": DBManager.shared.valueTypeIDFromName(name: selectedValueType)] as [String : Any]?
         attribute_query_dicts.append(attributes_attr ?? ["": -1])
+        attribute_name.text = ""
         print("adding attirbutes to list")
         print(attributes_attr)
-        
-        
     }
     
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedValueType = valueTypeNames[indexPath.row]
         print(selectedValueType)
     }
+    
     
     func getDate() -> String {
         let date = Date()
@@ -62,6 +61,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         print(formattedDate)
         return(formattedDate)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
