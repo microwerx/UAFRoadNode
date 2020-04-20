@@ -20,7 +20,9 @@ class editLayerDetail: UIViewController {
         valueTypeLabelArray = DBManager.shared.valueTypeNames
     }
     
-    let dataTypes = ["INTEGER", "REAL", "TEXT", "BLOB"]
+    var dataTypes: Array<String> = DBManager.shared.selectValueTypeNames()
+    var selectedValueType = ""
+    var attribute_query_dicts = Array<[String: Any]>()
     
     @IBOutlet weak var valueTableView: UITableView!
     @IBOutlet weak var detailTableView: UITableView!
@@ -29,6 +31,9 @@ class editLayerDetail: UIViewController {
     @IBOutlet weak var layerName: UILabel!
     
     @IBAction func addAttributeButton(_ sender: Any) {
+        
+       // Store the inputed Attribute to the correct Layer in the database
+        
         //Get the updated Array
         print(attributeLabelArray)
         print(valueTypeLabelArray)
@@ -45,6 +50,17 @@ class editLayerDetail: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showAlert(title: String, message: String, handlerOK:((UIAlertAction) -> Void)?, handlerCancel:((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: . alert)
+        let action = UIAlertAction(title: "OK", style: .destructive, handler: handlerOK)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: handlerCancel)
+        alert.addAction(action)
+        alert.addAction(actionCancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     
@@ -104,5 +120,21 @@ extension editLayerDetail : UITableViewDataSource, UITableViewDelegate {
     //            break;
     //        }
     //    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in
+            
+            //**********************************
+            // Selected Attribute must be deleted the database first
+            //**********************************
+            
+            self.detailTableView.deleteRows(at: [indexPath], with: .automatic)
+            self.valueTableView.deleteRows(at: [indexPath], with: .automatic)
+            
+        }, handlerCancel: { actionCancel in print("Action cancel")
+        })
+        print("Deleted")
     
+      }
+    }
 }
