@@ -13,8 +13,6 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     
 
-    
-
     @IBOutlet weak var myTableView: UITableView!
     
     let dataTypes = ["INTEGER", "REAL", "TEXT", "BLOB"]
