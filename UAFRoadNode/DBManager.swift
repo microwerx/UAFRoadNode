@@ -250,6 +250,31 @@ class DBManager: NSObject {
         return ""
     }
     
+    // isUnique attribute query functions
+    
+    func isUnique_layerName(name: String) -> Bool {
+        if openDatabase() {
+            do {
+                let query = "SELECT \"name\" FROM layers;"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                var n = String()
+                while (rsMain!.next() == true) {
+                    n = rsMain?.string(forColumn: "name") ?? ""
+                    if n == name {
+                        database.close()
+                        print(n)
+                        return false
+                    }
+                }
+                database.close()
+                return true
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
     //TODO This is not actually working... it checks if
     // the date is formatted correctly but allows things
     // like 89-67-2019 and there is a string interpolation error

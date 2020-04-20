@@ -27,19 +27,32 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func addNewLayerType(_ sender: UIButton) {
         let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test"]
         
-        DBManager.shared.addLayerType(attr: layer_attr)
-        DBManager.shared.selectLayersQuery()
-        
-        for attr in attribute_query_dicts {
-            DBManager.shared.addAttribute(attr: attr)
+        if DBManager.shared.isUnique_layerName(name: layer_name.text!) {
+            DBManager.shared.addLayerType(attr: layer_attr)
+            DBManager.shared.selectLayersQuery()
+            
+            for (i, _) in attribute_query_dicts.enumerated() {
+                attribute_query_dicts[i]["layer_name"] = layer_name.text!
+            }
+            for attr in attribute_query_dicts {
+                DBManager.shared.addAttribute(attr: attr)
+            }
+            DBManager.shared.selectAttributesQuery()
         }
-        DBManager.shared.selectAttributesQuery()
+        else {
+            // TODO: display an on screen warning
+            print("Error: layer name already exists.")
+        }
+            
+        // reset the attribute dictionary
+        attribute_query_dicts = Array<[String: Any]>()
+        layer_name.text = ""
         
     }
     
     
     @IBAction func addAttribute(_ sender: UIButton) {
-        let attributes_attr = ["name": attribute_name.text!, "layer_name": layer_name.text!, "value_type_id": DBManager.shared.valueTypeIDFromName(name: selectedValueType)] as [String : Any]?
+        let attributes_attr = ["name": attribute_name.text!, "layer_name": "", "value_type_id": DBManager.shared.valueTypeIDFromName(name: selectedValueType)] as [String : Any]?
         attribute_query_dicts.append(attributes_attr ?? ["": -1])
         attribute_name.text = ""
         print("adding attirbutes to list")
