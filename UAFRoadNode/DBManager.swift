@@ -51,6 +51,8 @@ class DBManager: NSObject {
     var database: FMDatabase!
     
     var layerNames = [String]()
+    var attributeNames = [String]()
+    var valueTypeNames = [String]()
     
     override init() {
         super.init()
@@ -174,6 +176,7 @@ class DBManager: NSObject {
                     let name = rsMain?.string(forColumn: field_valueTypes_name)
                     let data_type_id = rsMain?.string(forColumn: field_valueTypes_dataType)
                     print(" value_types.id: \(id!)\n value_types.name: \(name!)\n value_types.data_type: \(data_type_id!)\n")
+                    valueTypeNames.append(name!)
                 }
             }
         }
@@ -192,6 +195,7 @@ class DBManager: NSObject {
                     let layer_name = rsMain?.string(forColumn: field_attributes_layerName)
                     let value_type_id = rsMain?.string(forColumn: field_attributes_valueTypeID)
                     print(" attributes.id: \(id!)\n attributes.name: \(name!)\n attributes.layer_name: \(layer_name!)\n attributes.value_type_id: \(value_type_id!)\n")
+                    attributeNames.append(name!)
                 }
             }
         }

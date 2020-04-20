@@ -12,6 +12,7 @@
 		8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214EE244D5EB6004480CA /* editLayerDetail.swift */; };
 		8A4214F1244D64D9004480CA /* roundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214F0244D64D9004480CA /* roundButton.swift */; };
 		8A4214F3244D7129004480CA /* exportFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214F2244D7129004480CA /* exportFiles.swift */; };
+		8A4214F5244D8718004480CA /* layerDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214F4244D8718004480CA /* layerDetailTableViewCell.swift */; };
 		8A7271B22404C7B8002DB500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7271622404616E002DB500 /* CoreLocation.framework */; };
 		8A7271DB2404F91B002DB500 /* showMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7271DA2404F91B002DB500 /* showMap.swift */; };
 		8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A740CAC242E8C2100A5436A /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		8A4214EE244D5EB6004480CA /* editLayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editLayerDetail.swift; sourceTree = "<group>"; };
 		8A4214F0244D64D9004480CA /* roundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundButton.swift; sourceTree = "<group>"; };
 		8A4214F2244D7129004480CA /* exportFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exportFiles.swift; sourceTree = "<group>"; };
+		8A4214F4244D8718004480CA /* layerDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layerDetailTableViewCell.swift; sourceTree = "<group>"; };
 		8A7271622404616E002DB500 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8A7271DA2404F91B002DB500 /* showMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showMap.swift; sourceTree = "<group>"; };
 		8A740CAC242E8C2100A5436A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				8A740CB2242E8FA200A5436A /* AppDelegate.swift */,
 				8A740CAC242E8C2100A5436A /* SceneDelegate.swift */,
 				8A740CAE242E8DC700A5436A /* Main.storyboard */,
+				8A4214F4244D8718004480CA /* layerDetailTableViewCell.swift */,
 				8A4214F2244D7129004480CA /* exportFiles.swift */,
 				8A4214F0244D64D9004480CA /* roundButton.swift */,
 				8A4214EE244D5EB6004480CA /* editLayerDetail.swift */,
@@ -401,6 +404,7 @@
 				B5F4655D243FBE86008D7190 /* FMResultSet.m in Sources */,
 				B5F46560243FBE86008D7190 /* FMDatabase.m in Sources */,
 				8AB4881B243AACE40049796B /* importFiles.swift in Sources */,
+				8A4214F5244D8718004480CA /* layerDetailTableViewCell.swift in Sources */,
 				B59E5B09244BCD0F00A2FD2E /* newLayerTypeViewController.swift in Sources */,
 				B516E005244BFFB300065399 /* CreateValueType.swift in Sources */,
 				8A4214ED244D5DE6004480CA /* editLayerType.swift in Sources */,

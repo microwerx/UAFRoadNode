@@ -9,16 +9,17 @@
 import UIKit
 
 var layerNameArray = [String]()
-var myIndex = 0
-func getData() {
-    DBManager.shared.displayLayerNames()
-    layerNameArray = DBManager.shared.layerNames
-}
+var myIndex=0
 
 class editLayerType: UIViewController {
     
     @IBOutlet weak var layerSearch: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    func getData() {
+        DBManager.shared.displayLayerNames()
+        layerNameArray = DBManager.shared.layerNames
+    }
     
     var searchedLayer = [String]()
     var searching = false
