@@ -10,6 +10,7 @@
 		3B1783AEEBF94F9C1A4D00C3 /* Pods_UAFRoadNode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C025671108B7E27663761F95 /* Pods_UAFRoadNode.framework */; };
 		8A4214ED244D5DE6004480CA /* editLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214EC244D5DE6004480CA /* editLayerType.swift */; };
 		8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214EE244D5EB6004480CA /* editLayerDetail.swift */; };
+		8A4214F1244D64D9004480CA /* roundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4214F0244D64D9004480CA /* roundButton.swift */; };
 		8A7271B22404C7B8002DB500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7271622404616E002DB500 /* CoreLocation.framework */; };
 		8A7271DB2404F91B002DB500 /* showMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7271DA2404F91B002DB500 /* showMap.swift */; };
 		8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A740CAC242E8C2100A5436A /* SceneDelegate.swift */; };
@@ -53,6 +54,7 @@
 		7E988F724906A2BD4DCB1762 /* Pods-UAFRoadNode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAFRoadNode.release.xcconfig"; path = "Target Support Files/Pods-UAFRoadNode/Pods-UAFRoadNode.release.xcconfig"; sourceTree = "<group>"; };
 		8A4214EC244D5DE6004480CA /* editLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editLayerType.swift; sourceTree = "<group>"; };
 		8A4214EE244D5EB6004480CA /* editLayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editLayerDetail.swift; sourceTree = "<group>"; };
+		8A4214F0244D64D9004480CA /* roundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundButton.swift; sourceTree = "<group>"; };
 		8A7271622404616E002DB500 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8A7271DA2404F91B002DB500 /* showMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showMap.swift; sourceTree = "<group>"; };
 		8A740CAC242E8C2100A5436A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				8A740CB2242E8FA200A5436A /* AppDelegate.swift */,
 				8A740CAC242E8C2100A5436A /* SceneDelegate.swift */,
 				8A740CAE242E8DC700A5436A /* Main.storyboard */,
+				8A4214F0244D64D9004480CA /* roundButton.swift */,
 				8A4214EE244D5EB6004480CA /* editLayerDetail.swift */,
 				8A4214EC244D5DE6004480CA /* editLayerType.swift */,
 				B5C7472C23F2897E00B16C2B /* Assets.xcassets */,
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */,
+				8A4214F1244D64D9004480CA /* roundButton.swift in Sources */,
 				8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */,
 				B5F46538243D86F7008D7190 /* DBManager.swift in Sources */,
 				B5F4655D243FBE86008D7190 /* FMResultSet.m in Sources */,
