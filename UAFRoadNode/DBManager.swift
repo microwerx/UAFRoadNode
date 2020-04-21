@@ -252,6 +252,22 @@ class DBManager: NSObject {
         return ""
     }
     
+    
+    func displayLayerNames() {
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_layers_name) FROM layers"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    let name = rsMain?.string(forColumn: field_layers_name)
+                    layerNames.append(name!)
+                    print("layers.name: \(name!)\n")
+                }
+            }
+        }
+        database.close()
+    }
+    
     // isUnique attribute query functions
     
     func isUnique_layerName(name: String) -> Bool {
@@ -287,6 +303,8 @@ class DBManager: NSObject {
         print("dateObj: \(dateObj)")
         return (dateObj != nil)
     }
+    
+    
     
     
     
@@ -373,20 +391,25 @@ class DBManager: NSObject {
         database.close()
     }
     
-    func displayLayerNames() {
+
+    func addNode(attr: [String: Any]) {
         if openDatabase() {
             do {
-                let query = "SELECT \(field_layers_name) FROM layers"
-                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
-                while (rsMain!.next() == true) {
-                    let name = rsMain?.string(forColumn: field_layers_name)
-                    layerNames.append(name!)
-                    print("layers.name: \(name!)\n")
+                // check that there is a value for each attribute
+                
+                let query = "INSERT INTO nodes (\(field_nodes_name), \(field_nodes_lat), \(field_nodes_long), \(field_nodes_layerName)) VALUES (\"\(attr[field_nodes_name] ?? "")\", \"\(attr[field_nodes_lat] ?? -1.0)\", \"\(attr[field_nodes_long] ?? -1.0)\", \"\(attr[field_nodes_layerName] ?? "")\");"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to insert new atrtribute type")
+                    print(database.lastError(), database.lastErrorMessage())
+                    
                 }
             }
         }
         database.close()
+        
     }
+
     
 }
 
