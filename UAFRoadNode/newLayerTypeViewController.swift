@@ -23,9 +23,8 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var attribute_name: UITextField!
     
     
-    
     @IBAction func addNewLayerType(_ sender: UIButton) {
-        let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test"]
+        let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test", "created_locally": 1, "on_display": 1] as [String : Any]
         
         if DBManager.shared.isUnique_layerName(name: layer_name.text!) {
             DBManager.shared.addLayerType(attr: layer_attr)

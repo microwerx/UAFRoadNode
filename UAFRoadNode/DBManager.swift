@@ -19,6 +19,8 @@ class DBManager: NSObject {
     let field_layers_crypto = "crypto"
     let field_layers_cryptoKey = "crypto_key"
     let field_layers_md5Hash = "md5_hash"
+    let field_layers_createdLocally = "created_locally"
+    let field_layers_onDisplay = "on_display"
     
     let field_valueTypes_id = "id"
     let field_valueTypes_name = "name"
@@ -87,7 +89,7 @@ class DBManager: NSObject {
                 // Open the database.
                 if database.open() {
                     print("Opened FMDatabase")
-                    let createLayersTableQuery = "CREATE TABLE layers (\(field_layers_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_layers_name) VARCHAR(45) NOT NULL, \(field_layers_creationDate) DATETIME NOT NULL, \(field_layers_crypto) VARCHAR(45), \(field_layers_cryptoKey) VARCHAR(45), \(field_layers_md5Hash) VARCHAR(45), UNIQUE (\(field_layers_name)));"
+                    let createLayersTableQuery = "CREATE TABLE layers (\(field_layers_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_layers_name) VARCHAR(45) NOT NULL, \(field_layers_creationDate) DATETIME NOT NULL, \(field_layers_crypto) VARCHAR(45), \(field_layers_cryptoKey) VARCHAR(45), \(field_layers_md5Hash) VARCHAR(45), \(field_layers_createdLocally) INTEGER NOT NULL, \(field_layers_onDisplay) INTEGER NOT NULL, UNIQUE (\(field_layers_name)));"
                     
                     let createValueTypesTableQuery = "CREATE TABLE value_types (\(field_valueTypes_id) INTEGER PRIMARY KEY AUTOINCREMENT, \(field_valueTypes_name) VARCHAR(45) NOT NULL, \(field_valueTypes_dataType) VARCHAR(45) NOT NULL, UNIQUE (\(field_valueTypes_name)));"
                     
@@ -157,7 +159,9 @@ class DBManager: NSObject {
                     let crypto = rsMain?.string(forColumn: field_layers_crypto)
                     let cryptoKey = rsMain?.string(forColumn: field_layers_cryptoKey)
                     let md5Hash = rsMain?.string(forColumn: field_layers_md5Hash)
-                    print(" layers.id: \(id!)\n layers.name: \(name!)\n layers.date: \(date!)\n layers.crypto: \(crypto!)\n layers.cryptoKey: \(cryptoKey!)\n layers.md5Hash: \(md5Hash!)")
+                    let createdLocally = rsMain?.string(forColumn: field_layers_createdLocally)
+                    let onDisplay = rsMain?.string(forColumn: field_layers_onDisplay)
+                    print(" layers.id: \(id!)\n layers.name: \(name!)\n layers.date: \(date!)\n layers.crypto: \(crypto!)\n layers.cryptoKey: \(cryptoKey!)\n layers.md5Hash: \(md5Hash!)\n layers.created_locally: \(createdLocally!)\n layers.on_display: \(onDisplay!)\n")
                 }
             }
         }
@@ -200,6 +204,8 @@ class DBManager: NSObject {
         database.close()
         
     }
+    
+    
     
     // Other select Queries
     
@@ -293,41 +299,23 @@ class DBManager: NSObject {
         }
     }
     
-    //TODO This is not actually working... it checks if
-    // the date is formatted correctly but allows things
-    // like 89-67-2019 and there is a string interpolation error
-    func date_is_valid(strDate: String) -> Bool {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "mm-dd-yyyy"
-        let dateObj = dateFormatter.date(from: strDate)
-        print("dateObj: \(dateObj)")
-        return (dateObj != nil)
-    }
+
+    // INSERT Functions
     
-    
-    
-    
-    
-    func addLayerType(attr: [String: String]) {
+    func addLayerType(attr: [String: Any]) {
         if openDatabase() {
             
             do {
                 // check that there is a value for each attribute
-                var empty = false
-                for (_, val) in attr {
-                    if val.count == 0 {
-                        empty = true
-                    }
-                }
-                if !empty {
-                    let query = "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash)) VALUES (\"\(attr[field_layers_name] ?? "")\", \"\(attr[field_layers_creationDate] ?? "")\", \"\(attr[field_layers_crypto] ?? "")\", \"\(attr[field_layers_cryptoKey] ?? "")\", \"\(attr[field_layers_md5Hash] ?? "")\");"
+               
+                let query = "INSERT INTO layers (\(field_layers_name), \(field_layers_creationDate), \(field_layers_crypto), \(field_layers_cryptoKey), \(field_layers_md5Hash), \(field_layers_createdLocally), \(field_layers_onDisplay)) VALUES (\"\(attr[field_layers_name] ?? "")\", \"\(attr[field_layers_creationDate] ?? "")\", \"\(attr[field_layers_crypto] ?? "")\", \"\(attr[field_layers_cryptoKey] ?? "")\", \"\(attr[field_layers_md5Hash] ?? "")\", \"\(attr[field_layers_createdLocally] ?? 1)\", \"\(attr[field_layers_onDisplay] ?? 1)\");"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to insert new layer type")
+                    print(database.lastError(), database.lastErrorMessage())
                     
-                    if !database.executeStatements(query) {
-                        print("Failed to insert new layer type")
-                        print(database.lastError(), database.lastErrorMessage())
-                        
-                    }
                 }
+                
                 else{
                     print("Error: passed null value/s in dict to addLayerType")
                     
@@ -338,6 +326,7 @@ class DBManager: NSObject {
         database.close()
         
     }
+    
     
     func addValueType(attr: [String: String]) {
         if openDatabase() {
@@ -369,8 +358,6 @@ class DBManager: NSObject {
         database.close()
         
     }
-    
-    
     
     
     func addAttribute(attr: [String: Any]) {
