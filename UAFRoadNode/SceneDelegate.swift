@@ -30,9 +30,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         
-        if !DBManager.shared.createDatabase() {
-            print("Did not create a new database.")
+        // Uncomment to delete the database.
+        // Recomment and restart app beforeattempting to update database
+        // or it will delete it again everytime the scene becomes active.
+        //DBManager.shared.deleteDatabase()
+        
+        if DBManager.shared.createDatabase() {
+            print("Created New Database")
         }
+        
     }
     
     func sceneWillResignActive(_ scene: UIScene) {

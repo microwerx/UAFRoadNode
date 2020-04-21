@@ -61,25 +61,23 @@ class DBManager: NSObject {
         pathToDatabase = documentsDirectory.appending("/\(databaseFileName)")
     }
     
+    func deleteDatabase() {
+        if FileManager.default.fileExists(atPath: pathToDatabase) {
+                
+                do {
+                    print("Deleting db")
+                    try FileManager.default.removeItem(atPath: pathToDatabase)
+                }
+                catch {
+                    print("Could not remove db")
+                    print(error.localizedDescription)
+                }
+             }
+        }
+        
     
     func createDatabase() -> Bool {
         var created = false
-        
-        // Uncomment the block comment below to delete the database for development
-        // Remember to recomment the if-block or you will continually delete and rebuild the database
-        
-        /*   ////
-         if FileManager.default.fileExists(atPath: pathToDatabase) {
-         do {
-         print("Deleting db")
-         try FileManager.default.removeItem(atPath: pathToDatabase)
-         }
-         catch {
-         print("Could not remove db")
-         print(error.localizedDescription)
-         }
-         }
-         */  //////////
         
         if !FileManager.default.fileExists(atPath: pathToDatabase) {
             print("Creating empty database")
@@ -140,7 +138,7 @@ class DBManager: NSObject {
                 return true
             }
         }
-        
+        print("There is no database")
         return false
     }
     
@@ -389,5 +387,6 @@ class DBManager: NSObject {
         }
         database.close()
     }
+    
 }
 
