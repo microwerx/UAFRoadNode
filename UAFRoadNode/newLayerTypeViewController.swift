@@ -55,7 +55,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         attribute_query_dicts.append(attributes_attr ?? ["": -1])
         attribute_name.text = ""
         print("adding attirbutes to list")
-        print(attributes_attr)
+        print(attributes_attr as Any)
     }
     
     

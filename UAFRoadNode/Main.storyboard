@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xBJ-eN-fM4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xBJ-eN-fM4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-Mq-dnP">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-Mq-dnP">
                                 <rect key="frame" x="10" y="98" width="394" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3EK-p9-F1h"/>
@@ -73,26 +73,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TB-bp-zsl">
-                                <rect key="frame" x="10" y="98" width="394" height="40"/>
-                                <connections>
-                                    <action selector="locationTapped:" destination="zZI-MP-TaM" eventType="touchUpInside" id="dGe-20-HP3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.69219315038713547" green="1" blue="0.88800008800796637" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="0TB-bp-zsl" firstAttribute="leading" secondItem="pj4-Mq-dnP" secondAttribute="leading" id="5ML-pK-5sN"/>
                             <constraint firstItem="pj4-Mq-dnP" firstAttribute="leading" secondItem="1Oh-oG-Vhq" secondAttribute="leading" constant="10" id="7VV-C7-p6m"/>
                             <constraint firstItem="Swi-9S-0rA" firstAttribute="trailing" secondItem="1Oh-oG-Vhq" secondAttribute="trailing" id="ENw-15-I1k"/>
                             <constraint firstItem="Swi-9S-0rA" firstAttribute="leading" secondItem="1Oh-oG-Vhq" secondAttribute="leading" id="MCK-Ye-bI0"/>
                             <constraint firstItem="pj4-Mq-dnP" firstAttribute="top" secondItem="1Oh-oG-Vhq" secondAttribute="top" constant="10" id="PpN-Dy-W9o"/>
                             <constraint firstAttribute="bottom" secondItem="Swi-9S-0rA" secondAttribute="bottom" id="WpS-n5-lAs"/>
                             <constraint firstItem="Swi-9S-0rA" firstAttribute="top" secondItem="1Oh-oG-Vhq" secondAttribute="top" id="rUH-oI-Ydk"/>
-                            <constraint firstItem="0TB-bp-zsl" firstAttribute="trailing" secondItem="pj4-Mq-dnP" secondAttribute="trailing" id="rVj-og-UdQ"/>
-                            <constraint firstItem="0TB-bp-zsl" firstAttribute="bottom" secondItem="pj4-Mq-dnP" secondAttribute="bottom" id="trG-5K-nJh"/>
                             <constraint firstItem="1Oh-oG-Vhq" firstAttribute="trailing" secondItem="pj4-Mq-dnP" secondAttribute="trailing" constant="10" id="xGB-ek-YdA"/>
-                            <constraint firstItem="0TB-bp-zsl" firstAttribute="top" secondItem="pj4-Mq-dnP" secondAttribute="top" id="zWj-Aa-c1N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Oh-oG-Vhq"/>
                     </view>
@@ -773,6 +763,6 @@
         <image name="square.stack.3d.up" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tXn-Hn-dqQ"/>
+        <segue reference="lKy-xI-Tx3"/>
     </inferredMetricsTieBreakers>
 </document>

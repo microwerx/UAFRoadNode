@@ -15,12 +15,9 @@ class showMap: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearch: UITextField!
     
-    @IBAction func locationTapped(_ sender: Any) {
-        gotoPlaces()
-    }
     
     @IBAction func addNode(_ sender: Any) {
-        gotoPlaces()
+        placeNodes()
     }
     
     override func viewDidLoad() {
@@ -33,9 +30,16 @@ class showMap: UIViewController {
         // GOOGLE MAPS SDK: USER'S LOCATION
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        
+        //Default View = Alaska
+        let cord2D = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
+        
+        self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 4.5)
+        self.mapView.delegate = self
+
     }
     
-    func gotoPlaces() {
+    func placeNodes() {
         txtSearch.resignFirstResponder()
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
