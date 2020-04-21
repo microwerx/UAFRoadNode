@@ -23,7 +23,7 @@ class editLayerType: UIViewController {
     
     var searchedLayer = [String]()
     var searching = false
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,17 @@ class editLayerType: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showAlert(title: String, message: String, handlerOK:((UIAlertAction) -> Void)?, handlerCancel:((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: . alert)
+        let action = UIAlertAction(title: "OK", style: .destructive, handler: handlerOK)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: handlerCancel)
+        alert.addAction(action)
+        alert.addAction(actionCancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -62,6 +73,23 @@ extension editLayerType: UITableViewDelegate, UITableViewDataSource {
     {
         myIndex = indexPath.row
         performSegue(withIdentifier: "editLayerSegue", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in
+                
+                //**********************************
+                // Selected Attribute must be deleted the database first
+                //**********************************
+                
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }, handlerCancel: { actionCancel in print("Action cancel")
+            })
+            print("Deleted")
+            
+        }
     }
     
     

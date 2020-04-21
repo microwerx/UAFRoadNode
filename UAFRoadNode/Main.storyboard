@@ -294,7 +294,7 @@
             </objects>
             <point key="canvasLocation" x="1747.826086956522" y="445.98214285714283"/>
         </scene>
-        <!--Edit Layer Type-->
+        <!--Edit or Delete Layer-->
         <scene sceneID="4PB-tv-O5i">
             <objects>
                 <viewController id="OSX-r9-rZe" customClass="editLayerType" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
@@ -330,7 +330,7 @@
                         <color key="backgroundColor" red="0.88227481159999999" green="0.97043256960000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="o6e-a7-tdx"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Layer Type" id="1H9-J7-M0T"/>
+                    <navigationItem key="navigationItem" title="Edit or Delete Layer" id="1H9-J7-M0T"/>
                     <connections>
                         <outlet property="layerSearch" destination="22Y-fj-Gzd" id="Sx4-q5-AJH"/>
                         <outlet property="tableView" destination="VEL-SS-g6K" id="FGR-5S-iTy"/>
@@ -356,77 +356,33 @@
                                 <color key="textColor" red="0.14930878850000001" green="0.33649240190000002" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-wY-8yy">
-                                <rect key="frame" x="20" y="189" width="374" height="275"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="ZFd-kh-Fjq" customClass="layerDetailTableViewCell" customModule="UAFRoadNode" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFd-kh-Fjq" id="nOw-xG-0js">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-bY-TBz">
-                                                    <rect key="frame" x="191" y="0.0" width="163" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLS-j7-LyI">
-                                                    <rect key="frame" x="13" y="0.0" width="170" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="attributeLabel" destination="cLS-j7-LyI" id="7aZ-of-BsK"/>
-                                            <outlet property="valueTypeLabel" destination="ZLs-bY-TBz" id="916-iy-Yi9"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="17J-Qc-sLB" id="bqW-LT-VJg"/>
-                                    <outlet property="delegate" destination="17J-Qc-sLB" id="sFL-kg-m1x"/>
-                                </connections>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Swo-uP-1hh">
-                                <rect key="frame" x="87" y="529" width="240" height="197"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Value Type Cell" rowHeight="38" id="ab8-rh-YwJ">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="38"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ab8-rh-YwJ" id="OKn-MG-GaK">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="17J-Qc-sLB" id="F0K-Cc-hJ4"/>
-                                    <outlet property="delegate" destination="17J-Qc-sLB" id="dFf-c1-hIY"/>
-                                </connections>
-                            </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a New Attribute Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J7f-fV-bjE">
-                                <rect key="frame" x="81" y="487" width="253" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a new name for this layer" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAw-6A-xRN">
+                                <rect key="frame" x="20" y="239" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hm4-7f-CPV">
-                                <rect key="frame" x="161" y="750" width="92" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsS-WV-WCJ" customClass="RoundButton" customModule="UAFRoadNode" customModuleProvider="target">
+                                <rect key="frame" x="68" y="534" width="279" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Attribute"/>
+                                <color key="backgroundColor" red="0.3514808103" green="0.64278176409999999" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                                <state key="normal" title="Submit Change">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="addAttributeButtin:" destination="17J-Qc-sLB" eventType="touchUpInside" id="eoi-GP-hbu"/>
-                                    <action selector="addAttributeButton:" destination="17J-Qc-sLB" eventType="touchUpInside" id="ete-2C-Iel"/>
+                                    <action selector="submitNewLayerName:" destination="17J-Qc-sLB" eventType="touchUpInside" id="Vwx-wz-348"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -435,10 +391,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="J1m-C5-Q7N"/>
                     <connections>
-                        <outlet property="detailTableView" destination="V3i-wY-8yy" id="vYa-KO-nKF"/>
                         <outlet property="layerName" destination="RZ3-3T-X0Q" id="osx-mD-1Ef"/>
-                        <outlet property="newAttribute" destination="J7f-fV-bjE" id="LRY-dR-7ss"/>
-                        <outlet property="valueTableView" destination="Swo-uP-1hh" id="t4P-GT-pRL"/>
+                        <outlet property="newLayerName" destination="pAw-6A-xRN" id="OJL-eF-BUl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8de-UX-rmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
