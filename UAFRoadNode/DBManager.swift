@@ -63,20 +63,6 @@ class DBManager: NSObject {
         pathToDatabase = documentsDirectory.appending("/\(databaseFileName)")
     }
     
-    func deleteDatabase() {
-        if FileManager.default.fileExists(atPath: pathToDatabase) {
-                
-                do {
-                    print("Deleting db")
-                    try FileManager.default.removeItem(atPath: pathToDatabase)
-                }
-                catch {
-                    print("Could not remove db")
-                    print(error.localizedDescription)
-                }
-             }
-        }
-        
     
     func createDatabase() -> Bool {
         var created = false
@@ -406,19 +392,36 @@ class DBManager: NSObject {
     func addNode(attr: [String: Any]) {
         if openDatabase() {
             do {
-                // check that there is a value for each attribute
-                
                 let query = "INSERT INTO nodes (\(field_nodes_name), \(field_nodes_lat), \(field_nodes_long), \(field_nodes_layerName)) VALUES (\"\(attr[field_nodes_name] ?? "")\", \"\(attr[field_nodes_lat] ?? -1.0)\", \"\(attr[field_nodes_long] ?? -1.0)\", \"\(attr[field_nodes_layerName] ?? "")\");"
                 
                 if !database.executeStatements(query) {
                     print("Failed to insert new atrtribute type")
                     print(database.lastError(), database.lastErrorMessage())
-                    
                 }
             }
         }
         database.close()
         
+    }
+
+    
+    // DROP Queries
+    
+    func deleteLayerType(layer_name: String) {
+        if openDatabase() {
+            do {
+                let query = "DELETE FROM layers WHERE \(field_layers_name) = \"\(layer_name)\";"
+                if !database.executeStatements(query) {
+                    print("Failed to delete layer type \"\(layer_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                    }
+                
+                else {
+                    print("Deleted layer type \"\(layer_name)\" from the layers database")
+                    }
+                }
+            database.close()
+        }
     }
 
     

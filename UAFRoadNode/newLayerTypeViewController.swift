@@ -13,6 +13,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     var valueTypeNames: Array<String> = DBManager.shared.selectValueTypeNames()
     
     var selectedValueType = ""
+    var attribute_count = 0
     
     var attribute_query_dicts = Array<[String: Any]>()
 
@@ -26,26 +27,34 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func addNewLayerType(_ sender: UIButton) {
         let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test", "created_locally": 1, "on_display": 1] as [String : Any]
         
-        if DBManager.shared.isUnique_layerName(name: layer_name.text!) {
-            DBManager.shared.addLayerType(attr: layer_attr)
-            DBManager.shared.selectLayersQuery()
-            
-            for (i, _) in attribute_query_dicts.enumerated() {
-                attribute_query_dicts[i]["layer_name"] = layer_name.text!
+        if attribute_count > 0 {
+            if DBManager.shared.isUnique_layerName(name: layer_name.text!) {
+                DBManager.shared.addLayerType(attr: layer_attr)
+                DBManager.shared.selectLayersQuery()
+                
+                for (i, _) in attribute_query_dicts.enumerated() {
+                    attribute_query_dicts[i]["layer_name"] = layer_name.text!
+                }
+                for attr in attribute_query_dicts {
+                    DBManager.shared.addAttribute(attr: attr)
+                }
+                DBManager.shared.selectAttributesQuery()
             }
-            for attr in attribute_query_dicts {
-                DBManager.shared.addAttribute(attr: attr)
+            else {
+                // TODO: display an on screen warning
+                print("Error: layer name already exists.")
             }
-            DBManager.shared.selectAttributesQuery()
+                
+            // reset the attribute dictionary
+            attribute_query_dicts = Array<[String: Any]>()
+            layer_name.text = ""
         }
         else {
+
             // TODO: [display an on screen warning]
-            print("Error: layer name already exists.")
+            print("Error: Attempted to add a layer type with no attributes")
+
         }
-            
-        // reset the attribute dictionary
-        attribute_query_dicts = Array<[String: Any]>()
-        layer_name.text = ""
         
     }
     
@@ -56,6 +65,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         attribute_name.text = ""
         print("adding attirbutes to list")
         print(attributes_attr as Any)
+        attribute_count += 1
     }
     
     

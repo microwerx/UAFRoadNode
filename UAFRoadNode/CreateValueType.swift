@@ -41,6 +41,7 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         DBManager.shared.addValueType(attr: value_type_attr)
         DBManager.shared.selectValueTypeQuery()
+        value_type_name.text? = ""
         
     }
     

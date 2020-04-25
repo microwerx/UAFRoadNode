@@ -77,10 +77,10 @@ extension editLayerType: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             showAlert(title: "Layer DELETE Alert", message: "You sure you want to delete this Layer?", handlerOK: { action in
-                
-                //**********************************
-                // Selected Attribute must be deleted the database first
-                //**********************************
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LayerName", for: indexPath)
+                cell.textLabel?.text = layerNameArray[indexPath.row]
+                DBManager.shared.deleteLayerType(layer_name: cell.textLabel?.text ?? "")
+            
                 
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 
