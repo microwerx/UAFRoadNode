@@ -35,6 +35,7 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         selectedDatatype = dataTypes[indexPath.row]
     }
   
+    // TODO: [display an on screen warning if already exists]
     @IBAction func submit(_ sender: UIButton) {
         let value_type_attr = ["name": value_type_name.text!, "data_type": selectedDatatype]
         

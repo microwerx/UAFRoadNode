@@ -39,7 +39,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
             DBManager.shared.selectAttributesQuery()
         }
         else {
-            // TODO: display an on screen warning
+            // TODO: [display an on screen warning]
             print("Error: layer name already exists.")
         }
             

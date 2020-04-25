@@ -17,6 +17,12 @@ class exportFiles: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // TODO: [Write export to KML function]
+    func exportToKML(DBManager: Any, String: Any) {}
+    
+    // TODO: [Write export to CSV function]
+    func exportToCSV(DBManager: Any, String: Any) {}
+    
 
     /*
     // MARK: - Navigation

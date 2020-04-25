@@ -24,4 +24,6 @@ class editLayerDetail: UIViewController {
         layerName.text = layerNameArray[myIndex]
         
     }
+    
+    // TODO: [display an on screen warning if new layer name already exists]
 }
