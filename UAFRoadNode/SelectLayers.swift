@@ -22,23 +22,14 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        layers = DBManager.shared.getLayerNames()
+        print("loaded layers: \(layers)")
         selectLayer_tableView.dataSource = self
         selectLayer_tableView.delegate = self
     }
     
-    //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //    selectedLayer = layers[indexPath.row]
-    //}
-    
-    func getData() {
-        DBManager.shared.displayLayerNames()
-        layers = DBManager.shared.layerNames
-    }
     // MARK: - Navigation
 
     func numberOfSections(in tableView: UITableView) -> Int {

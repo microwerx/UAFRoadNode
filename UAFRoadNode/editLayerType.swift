@@ -16,17 +16,13 @@ class editLayerType: UIViewController {
     @IBOutlet weak var layerSearch: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    func getData() {
-        DBManager.shared.displayLayerNames()
-        layerNameArray = DBManager.shared.layerNames
-    }
-    
     var searchedLayer = [String]()
     var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        layerNameArray = DBManager.shared.getLayerNames()
+        print(layerNameArray)
         layerSearch.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -49,6 +45,10 @@ class editLayerType: UIViewController {
 }
 
 extension editLayerType: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
@@ -90,6 +90,7 @@ extension editLayerType: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    
     
     
 }

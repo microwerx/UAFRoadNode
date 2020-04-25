@@ -259,7 +259,8 @@ class DBManager: NSObject {
     }
     
     
-    func displayLayerNames() {
+    func getLayerNames() -> Array<String>{
+        var layerNames = Array<String>()
         if openDatabase() {
             do {
                 let query = "SELECT \(field_layers_name) FROM layers"
@@ -267,11 +268,11 @@ class DBManager: NSObject {
                 while (rsMain!.next() == true) {
                     let name = rsMain?.string(forColumn: field_layers_name)
                     layerNames.append(name!)
-                    print("layers.name: \(name!)\n")
                 }
             }
         }
         database.close()
+        return layerNames
     }
     
     // isUnique attribute query functions
@@ -327,6 +328,29 @@ class DBManager: NSObject {
         
     }
     
+    
+    func editLayerName(old_name: String, new_name: String) {
+        if openDatabase() {
+            
+            do {
+                // check that there is a value for each attribute
+               
+                let query = "UPDATE layers SET \(field_layers_name) = '\(new_name)' WHERE \(field_layers_name) = '\(old_name)';"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to update layer name \"\(old_name)\" to \"\(new_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                }
+                
+                else{
+                    print("Updated layer name \"\(old_name)\" to \"\(new_name)\"")
+                }
+            }
+            
+        }
+        database.close()
+        
+    }
     
     func addValueType(attr: [String: String]) {
         if openDatabase() {
