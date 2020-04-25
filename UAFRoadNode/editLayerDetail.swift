@@ -15,7 +15,12 @@ class editLayerDetail: UIViewController {
     @IBOutlet weak var newLayerName: UITextField!
      
     @IBAction func submitNewLayerName(_ sender: Any) {
-        //UPDATE Database here with update layername query
+        
+        // TODO: Check db and confirm created_locally attribute is true
+        // Disallow update and issue warning if false.
+        
+        DBManager.shared.editLayerName(old_name: layerName.text!, new_name: newLayerName.text!)
+        
     }
 
     override func viewDidLoad() {
