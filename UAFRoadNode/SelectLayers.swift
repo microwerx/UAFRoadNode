@@ -12,15 +12,18 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     var layers = Array<String>()
     var selectedLayer = String()
+    
+    var returnBlock: ((String?)-> Void)?
+    
     @IBOutlet weak var selectLayer_tableView: UITableView!
     
-
     
     @IBAction func layerSwitchChanged(_ sender: Any) {
         
     }
     
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
@@ -28,9 +31,9 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
         selectLayer_tableView.delegate = self
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedLayer = layers[indexPath.row]
-    }
+    //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //    selectedLayer = layers[indexPath.row]
+    //}
     
     func getData() {
         DBManager.shared.displayLayerNames()
@@ -50,7 +53,7 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "Layers", for: indexPath)
         
         cell.textLabel?.text = layers[indexPath.row]
-        
+        selectedLayer = layers[indexPath.row]
         return cell
     }
 

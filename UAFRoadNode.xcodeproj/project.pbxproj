@@ -26,6 +26,7 @@
 		B5C7473023F2897E00B16C2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C7472E23F2897E00B16C2B /* LaunchScreen.storyboard */; };
 		B5C7473B23F2897E00B16C2B /* UAFRoadNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7473A23F2897E00B16C2B /* UAFRoadNodeTests.swift */; };
 		B5C7474623F2897E00B16C2B /* UAFRoadNodeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7474523F2897E00B16C2B /* UAFRoadNodeUITests.swift */; };
+		B5D01EAD24549F20001C131F /* SelectLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D01EAC24549F20001C131F /* SelectLayers.swift */; };
 		B5F4652A243C0583008D7190 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F46529243C055B008D7190 /* libsqlite3.tbd */; };
 		B5F46538243D86F7008D7190 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F46537243D86F7008D7190 /* DBManager.swift */; };
 		B5F4655D243FBE86008D7190 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F46553243FBE85008D7190 /* FMResultSet.m */; };
@@ -78,6 +79,7 @@
 		B5C7474123F2897E00B16C2B /* UAFRoadNodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UAFRoadNodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C7474523F2897E00B16C2B /* UAFRoadNodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAFRoadNodeUITests.swift; sourceTree = "<group>"; };
 		B5C7474723F2897E00B16C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5D01EAC24549F20001C131F /* SelectLayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLayers.swift; sourceTree = "<group>"; };
 		B5F46529243C055B008D7190 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B5F4652B243C1994008D7190 /* UAFRoadNode-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UAFRoadNode-Bridging-Header.h"; sourceTree = "<group>"; };
 		B5F46537243D86F7008D7190 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		B5C7472423F2897D00B16C2B /* UAFRoadNode */ = {
 			isa = PBXGroup;
 			children = (
+				B5D01EAC24549F20001C131F /* SelectLayers.swift */,
 				8A740CB2242E8FA200A5436A /* AppDelegate.swift */,
 				8A740CAC242E8C2100A5436A /* SceneDelegate.swift */,
 				8A740CAE242E8DC700A5436A /* Main.storyboard */,
@@ -399,6 +402,7 @@
 				8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */,
 				8A4214F3244D7129004480CA /* exportFiles.swift in Sources */,
 				8A4214F1244D64D9004480CA /* roundButton.swift in Sources */,
+				B5D01EAD24549F20001C131F /* SelectLayers.swift in Sources */,
 				8A740CAD242E8C2100A5436A /* SceneDelegate.swift in Sources */,
 				B5F46538243D86F7008D7190 /* DBManager.swift in Sources */,
 				B5F4655D243FBE86008D7190 /* FMResultSet.m in Sources */,
