@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xBJ-eN-fM4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xBJ-eN-fM4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +42,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Odv-mS-p0W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566.666666666667" y="-303.34821428571428"/>
+            <point key="canvasLocation" x="2567" y="-271"/>
+        </scene>
+        <!--Name Your New Node-->
+        <scene sceneID="3O0-sP-sf5">
+            <objects>
+                <viewController id="Oix-yz-Ilr" customClass="NameNode" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lsm-u4-uAE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Node Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuE-XZ-2ii">
+                                <rect key="frame" x="162" y="130" width="91" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Sf-6b-iA8">
+                                <rect key="frame" x="20" y="159" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="etr-Xs-c7z"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Name Your New Node" id="cWu-Oi-V8l"/>
+                    <connections>
+                        <outlet property="nameText" destination="9Sf-6b-iA8" id="nfG-xi-YoB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUJ-I4-bP1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2566.666666666667" y="-1034.5982142857142"/>
         </scene>
         <!--UAF Friendly GIS-->
         <scene sceneID="zck-Zl-8us">
@@ -55,6 +89,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swi-9S-0rA" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-Mq-dnP">
                                 <rect key="frame" x="10" y="98" width="394" height="40"/>
@@ -100,11 +135,12 @@
                     <connections>
                         <outlet property="mapView" destination="Swi-9S-0rA" id="lpv-ip-sDA"/>
                         <outlet property="txtSearch" destination="pj4-Mq-dnP" id="S1v-jR-yHv"/>
+                        <segue destination="Oix-yz-Ilr" kind="show" identifier="NameNodeSegue" id="JfF-gB-ifM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRI-1c-QfB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="-303"/>
+            <point key="canvasLocation" x="1643" y="-271"/>
         </scene>
         <!--Select Node Type-->
         <scene sceneID="TPN-6g-WT1">

@@ -11,18 +11,24 @@ import GoogleMaps
 import GooglePlaces
 
 // Temp for dev. Move this to layer selector when it's ready
-var pin_layer = "dogs"
+
 
 let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
 var layer_colors = [String: String]()
 
 
 
+
 class showMap: UIViewController {
-    
+
+    var limit_longpress = false
     var longPressRecognizer = UILongPressGestureRecognizer()
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
-        print("LONG PRESS")
+        if !limit_longpress {
+            print("LONG PRESS")
+            limit_longpress = true
+            performSegue(withIdentifier: "NameNodeSegue", sender: sender)
+        }
     }
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -34,6 +40,7 @@ class showMap: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        limit_longpress = false
         assignLayerColors()
         print(layer_colors)
     }
@@ -54,7 +61,7 @@ class showMap: UIViewController {
         
         longPressRecognizer = UILongPressGestureRecognizer(target: self,
         action: #selector(self.longPress))
-        longPressRecognizer.minimumPressDuration = 0.5
+        longPressRecognizer.minimumPressDuration = 0.75
         longPressRecognizer.delegate = self
         mapView.addGestureRecognizer(longPressRecognizer)
         
