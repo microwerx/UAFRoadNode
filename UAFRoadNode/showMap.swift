@@ -2,7 +2,7 @@
 //  showMap.swift
 //  UAFRoadNode
 //
-//  Created by Nami Kim on 2/24/20.
+//  Created by Alex Lewandowski and Nami Kim.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 
 import Foundation
@@ -10,25 +10,31 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-// Temp for dev. Move this to layer selector when it's ready
-
 
 let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
-var layer_colors = [String: String]()
-var long_press_coords = CLLocationCoordinate2D()
 
+var layer_colors = [String: String]()
+
+var long_press_coords = CLLocationCoordinate2D()
 
 
 class showMap: UIViewController {
     
     let locationManager = CLLocationManager()
     
-    
     var tap_coords = CLLocationCoordinate2D()
     
     var limit_longpress = false
     
     var longPressRecognizer = UILongPressGestureRecognizer()
+    
+    var nodes_on_display = Array<GMSMarker>()
+    
+    
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    
+    @IBOutlet weak var txtSearch: UITextField!
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if !limit_longpress {
@@ -38,23 +44,17 @@ class showMap: UIViewController {
         }
     }
     
-    @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var txtSearch: UITextField!
-    
-    
-    @IBAction func addNode(_ sender: Any) {
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         limit_longpress = false
         assignLayerColors()
         print(layer_colors)
+        makeNodes()
+        for node in nodes_on_display {
+            node.map = mapView
+        }
     }
     
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,12 +77,15 @@ class showMap: UIViewController {
         
         self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 4.5)
         self.mapView.delegate = self
+        //assignLayerColors()
+        //displayNodes()
+        //for node in no
         
-        let position = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
-        let marker = GMSMarker(position: position)
-        marker.title = "Hello World"
-        marker.icon = GMSMarker.markerImage(with: UIColor.green)
-        marker.map = mapView
+        //let position = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
+        //let marker = GMSMarker(position: position)
+        //marker.title = "Hello World"
+        //marker.icon = GMSMarker.markerImage(with: UIColor.green)
+        //marker.map = mapView
     }
     
   //  func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
@@ -106,12 +109,28 @@ class showMap: UIViewController {
         }
     }
     
-    func displayNodes() {
+    func makeNodes() {
         let nodes_to_display = DBManager.shared.nodes_to_display()
-        //for node in nodes_to_display {
+        for node in nodes_on_display {
+            node.map = nil
+        }
+        nodes_on_display = Array<GMSMarker>()
+        for node_id in nodes_to_display {
+            let layer_name = DBManager.shared.getLayerName(node_id: node_id)
+            print(layer_name)
+            print(layer_colors[layer_name])
+            let color = UIColor(named: layer_colors[layer_name]!)
             
-        //}
-        
+            let node_coord = DBManager.shared.getNodeCoord(node_id: node_id)
+            var position = CLLocationCoordinate2D()
+            position.latitude = node_coord["latitude"] ?? -1.0
+            position.longitude = node_coord["longitude"] ?? -1.0
+            
+            let marker = GMSMarker(position: position)
+            marker.title = "Hello World"
+            marker.icon = GMSMarker.markerImage(with: color)
+            nodes_on_display.append(marker)
+        }
     }
     
     //func placeNodes() {

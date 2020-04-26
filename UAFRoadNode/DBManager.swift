@@ -315,16 +315,52 @@ class DBManager: NSObject {
                     let query = "SELECT \(field_nodes_id) FROM nodes WHERE \(field_nodes_layerName)=\"\(layer)\";"
                     let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
                         while (rsMain!.next() == true) {
-                            let id = Int(rsMain?.string(forColumn: field_layers_name) ?? "-1")
+                            let id = Int(rsMain?.string(forColumn: field_nodes_id) ?? "-1")
                             if id != -1 {
                                 nodes_to_display.append(id!)
                             }
                         }
                 }
+                database.close()
             }
         }
         return nodes_to_display
     }
+    
+    
+    func getLayerName(node_id: Int) -> String{
+        var layer_name = ""
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_nodes_layerName) FROM nodes WHERE \(field_nodes_id)=\"\(node_id)\";"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        layer_name = rsMain?.string(forColumn: field_nodes_layerName) ?? "-1"
+                        }
+                    }
+            database.close()
+            }
+        return layer_name
+    }
+    
+    
+    func getNodeCoord(node_id: Int) -> [String: Double]{
+        var coord = [String: Double]()
+            if openDatabase() {
+                do {
+                    let query = "SELECT \(field_nodes_lat), \(field_nodes_long) FROM nodes WHERE \(field_nodes_id)=\"\(node_id)\";"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                        while (rsMain!.next() == true) {
+                            let latitude = Double(rsMain?.string(forColumn: field_nodes_lat) ?? "-1.0") ?? -1.0
+                            let longitude = Double(rsMain?.string(forColumn: field_nodes_long) ?? "-1.0") ?? -1.0
+                            coord["latitude"] = latitude
+                            coord["longitude"] = longitude
+                            }
+                        }
+                database.close()
+                }
+            return coord
+        }
     
     
     // isUnique attribute query functions

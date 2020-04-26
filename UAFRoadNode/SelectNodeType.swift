@@ -13,17 +13,19 @@ var selectedNodeType = ""
 class SelectNodeType: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myTableView: UITableView!
+    
     let nodeTypes = DBManager.shared.getLayerNames()
 
+    
     override func viewWillAppear(_ animated: Bool) {
         selectedNodeType = ""
     }
+    
     
     @IBAction func submit(_ sender: Any) {
         print(selectedNodeType)
         _ = navigationController?.popViewController(animated: true)
     }
-    
     
     
     override func viewDidLoad() {
@@ -33,17 +35,22 @@ class SelectNodeType: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         // Do any additional setup after loading the view.
     }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedNodeType = nodeTypes[indexPath.row]
     }
 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
             return 1
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nodeTypes.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Node Type", for: indexPath)
@@ -52,6 +59,4 @@ class SelectNodeType: UIViewController, UITableViewDelegate, UITableViewDataSour
         selectedNodeType = cell.textLabel?.text ?? ""
         return cell
     }
-
 }
-
