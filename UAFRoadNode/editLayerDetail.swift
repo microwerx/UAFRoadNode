@@ -20,6 +20,7 @@ class editLayerDetail: UIViewController {
         // Disallow update and issue warning if false.
         
         DBManager.shared.editLayerName(old_name: layerName.text!, new_name: newLayerName.text!)
+        _ = navigationController?.popViewController(animated: true)
         
     }
 

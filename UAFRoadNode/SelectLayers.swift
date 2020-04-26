@@ -27,12 +27,6 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         selected_layers = DBManager.shared.layersToDisplay()
-        //for layer in layers {
-        //    if DBManager.shared.layerIsOnDisplay(layer: layer) {
-        //        selected_layers.append(layer)
-        //    }
-        //}
-        
         selectLayer_tableView.dataSource = self
         selectLayer_tableView.delegate = self
     }

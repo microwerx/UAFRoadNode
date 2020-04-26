@@ -13,7 +13,12 @@ import GooglePlaces
 // Temp for dev. Move this to layer selector when it's ready
 var pin_layer = "dogs"
 
+let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
+var layer_colors = [String: String]()
+
 class showMap: UIViewController {
+    
+    
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearch: UITextField!
@@ -21,6 +26,11 @@ class showMap: UIViewController {
     
     @IBAction func addNode(_ sender: Any) {
         placeNodes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        assignLayerColors()
+        print(layer_colors)
     }
     
     override func viewDidLoad() {
@@ -45,11 +55,27 @@ class showMap: UIViewController {
         marker.title = "Hello World"
         marker.icon = GMSMarker.markerImage(with: UIColor.green)
         marker.map = mapView
-       
+    }
+    
+    func assignLayerColors() {
+        var color_rounds = colors
+        for layer in DBManager.shared.layersToDisplay() {
+            if layer_colors[layer] == nil {
+                if color_rounds.count == 0 {
+                    color_rounds = colors
+                }
+                let color = color_rounds.randomElement() ?? ""
+                color_rounds.remove(at: color_rounds.firstIndex(of: color) ?? -1)
+                layer_colors[layer] = color
+            }
+        }
     }
     
     func displayNodes() {
-        //let nodes_to_display = DBManager.shared.get_nodes_to_display()
+        let nodes_to_display = DBManager.shared.nodes_to_display()
+        //for node in nodes_to_display {
+            
+        //}
         
     }
     
