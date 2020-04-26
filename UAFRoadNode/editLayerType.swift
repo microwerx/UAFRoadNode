@@ -19,6 +19,13 @@ class editLayerType: UIViewController {
     var searchedLayer = [String]()
     var searching = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        layerNameArray = DBManager.shared.getLayerNames()
+        tableView.reloadData()
+        print(layerNameArray)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layerNameArray = DBManager.shared.getLayerNames()
@@ -59,6 +66,7 @@ extension editLayerType: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        layerNameArray = DBManager.shared.getLayerNames()
         let cell = tableView.dequeueReusableCell(withIdentifier: "LayerName")
         if searching {
             cell?.textLabel?.text = searchedLayer[indexPath.row]
