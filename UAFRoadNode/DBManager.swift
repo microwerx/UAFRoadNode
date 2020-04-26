@@ -261,6 +261,7 @@ class DBManager: NSObject {
         return layerNames
     }
     
+    
     func layerIsOnDisplay(layer: String) -> Bool {
         var isOn = false
         if openDatabase() {
@@ -277,6 +278,19 @@ class DBManager: NSObject {
         database.close()
         return isOn
     }
+    
+    
+    func layersToDisplay() -> Array<String> {
+        let all_layers = getLayerNames()
+        var layers_to_display = Array<String>()
+        for layer in all_layers {
+            if layerIsOnDisplay(layer: layer) {
+                layers_to_display.append(layer)
+            }
+        }
+        return layers_to_display
+    }
+    
     
     // isUnique attribute query functions
     

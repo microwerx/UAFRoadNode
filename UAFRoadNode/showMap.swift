@@ -10,6 +10,9 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
+// Temp for dev. Move this to layer selector when it's ready
+var pin_layer = "dogs"
+
 class showMap: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -36,7 +39,18 @@ class showMap: UIViewController {
         
         self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 4.5)
         self.mapView.delegate = self
-
+        
+        let position = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
+        let marker = GMSMarker(position: position)
+        marker.title = "Hello World"
+        marker.icon = GMSMarker.markerImage(with: UIColor.green)
+        marker.map = mapView
+       
+    }
+    
+    func displayNodes() {
+        //let nodes_to_display = DBManager.shared.get_nodes_to_display()
+        
     }
     
     func placeNodes() {

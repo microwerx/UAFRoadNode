@@ -26,13 +26,12 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loaded layers: \(layers)")
-        
-        for layer in layers {
-            if DBManager.shared.layerIsOnDisplay(layer: layer) {
-                selected_layers.append(layer)
-            }
-        }
+        selected_layers = DBManager.shared.layersToDisplay()
+        //for layer in layers {
+        //    if DBManager.shared.layerIsOnDisplay(layer: layer) {
+        //        selected_layers.append(layer)
+        //    }
+        //}
         
         selectLayer_tableView.dataSource = self
         selectLayer_tableView.delegate = self
@@ -56,7 +55,7 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
         if isOn {
             if !selected_layers.contains(layer) {
                 selected_layers.append(layer)
-                print("added layer: \(layer): \(selected_layers)")
+                print("added layer: \(layer) to select_layers: \(selected_layers)")
             }
         }
         else {
@@ -65,7 +64,6 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
                 print("removed layer \(layer) from selected_layers: \(selected_layers)")
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
