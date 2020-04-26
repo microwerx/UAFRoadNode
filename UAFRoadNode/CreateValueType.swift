@@ -8,10 +8,7 @@
 
 import UIKit
 
-class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-
-    
+class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var myTableView: UITableView!
     
@@ -20,11 +17,17 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
    
     @IBOutlet weak var value_type_name: UITextField!
     
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         myTableView.dataSource = self
         myTableView.delegate = self
+        value_type_name.delegate = self
 
         // Do any additional setup after loading the view.
     }

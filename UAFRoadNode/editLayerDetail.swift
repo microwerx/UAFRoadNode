@@ -8,11 +8,16 @@
 
 import UIKit
 
-class editLayerDetail: UIViewController {
+class editLayerDetail: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var layerName: UILabel!
     @IBOutlet weak var newLayerName: UITextField!
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
      
     @IBAction func submitNewLayerName(_ sender: Any) {
         
@@ -28,6 +33,7 @@ class editLayerDetail: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         layerName.text = layerNameArray[myIndex]
+        newLayerName.delegate = self
         
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var valueTypeNames: Array<String> = DBManager.shared.selectValueTypeNames()
     
@@ -23,6 +23,10 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var attribute_name: UITextField!
     
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     @IBAction func addNewLayerType(_ sender: UIButton) {
         let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test", "created_locally": 1, "on_display": 1] as [String : Any]
@@ -90,6 +94,8 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         
         valueType_tableView.dataSource = self
         valueType_tableView.delegate = self
+        layer_name.delegate = self
+        attribute_name.delegate = self
     
 
         // Do any additional setup after loading the view.
