@@ -15,14 +15,21 @@ import GooglePlaces
 
 let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
 var layer_colors = [String: String]()
-
+var long_press_coords = CLLocationCoordinate2D()
 
 
 
 class showMap: UIViewController {
-
+    
+    let locationManager = CLLocationManager()
+    
+    
+    var tap_coords = CLLocationCoordinate2D()
+    
     var limit_longpress = false
+    
     var longPressRecognizer = UILongPressGestureRecognizer()
+    
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if !limit_longpress {
             print("LONG PRESS")
@@ -107,12 +114,36 @@ class showMap: UIViewController {
         
     }
     
-    func placeNodes() {
-        txtSearch.resignFirstResponder()
-        let acController = GMSAutocompleteViewController()
-        acController.delegate = self
-        present(acController, animated: true, completion: nil)
+    //func placeNodes() {
+    //    txtSearch.resignFirstResponder()
+    //    let acController = GMSAutocompleteViewController()
+    //    acController.delegate = self
+    //    present(acController, animated: true, completion: nil)
+   // }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        tap_coords = coordinate
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
     }
+    
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        long_press_coords = coordinate
+        print("You longpressed at \(coordinate.latitude), \(coordinate.longitude)")
+    }
+    
+    func getCurrentLocation() {
+            // Ask for Authorisation from the User.
+            self.locationManager.requestAlwaysAuthorization()
+    
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
+    
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                locationManager.startUpdatingLocation()
+            }
+        }
     
     func showAlert(title: String, message: String, handlerOK:((UIAlertAction) -> Void)?, handlerCancel:((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: . alert)

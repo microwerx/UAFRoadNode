@@ -150,8 +150,8 @@ class DBManager: NSObject {
                     print(" layers.id: \(id!)\n layers.name: \(name!)\n layers.date: \(date!)\n layers.crypto: \(crypto!)\n layers.cryptoKey: \(cryptoKey!)\n layers.md5Hash: \(md5Hash!)\n layers.created_locally: \(createdLocally!)\n layers.on_display: \(onDisplay!)\n")
                 }
             }
+            database.close()
         }
-        database.close()
     }
     
     func selectValueTypeQuery() {
@@ -167,9 +167,8 @@ class DBManager: NSObject {
                     valueTypeNames.append(name!)
                 }
             }
+            database.close()
         }
-        database.close()
-        
     }
     
     func selectAttributesQuery() {
@@ -186,10 +185,27 @@ class DBManager: NSObject {
                     attributeNames.append(name!)
                 }
             }
+            database.close()
         }
-        database.close()
-        
     }
+    
+    func selectNodesQuery() {
+      if openDatabase() {
+                do {
+                    let query = "SELECT * FROM nodes"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        let id = rsMain?.string(forColumn: field_nodes_id)
+                        let name = rsMain?.string(forColumn: field_nodes_name)
+                        let latitude = rsMain?.string(forColumn: field_nodes_lat)
+                        let longitude = rsMain?.string(forColumn: field_nodes_long)
+                        let layer_name = rsMain?.string(forColumn: field_nodes_layerName)
+                        print(" nodes.id: \(id!)\n nodes.name: \(name!)\n nodes.latitude: \(latitude!)\n nodes.longitude: \(longitude!)\n nodes.layer_name: \(layer_name!)\n")
+                    }
+                }
+                database.close()
+            }
+        }
     
     
     
@@ -422,11 +438,12 @@ class DBManager: NSObject {
                 let query = "INSERT INTO nodes (\(field_nodes_name), \(field_nodes_lat), \(field_nodes_long), \(field_nodes_layerName)) VALUES (\"\(attr[field_nodes_name] ?? "")\", \"\(attr[field_nodes_lat] ?? -1.0)\", \"\(attr[field_nodes_long] ?? -1.0)\", \"\(attr[field_nodes_layerName] ?? "")\");"
                 
                 if !database.executeStatements(query) {
-                    print("Failed to insert new atrtribute type")
+                    print("Failed to add new node")
                     print(database.lastError(), database.lastErrorMessage())
                 }
             }
         }
+        selectNodesQuery()
         database.close()
         
     }
