@@ -23,6 +23,8 @@ class showMap: UIViewController {
     var longPressRecognizer = UILongPressGestureRecognizer()
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         print("LONG PRESS")
+        performSegue(withIdentifier: "Select Node Type", sender: nil)
+        
     }
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -37,6 +39,9 @@ class showMap: UIViewController {
         assignLayerColors()
         print(layer_colors)
     }
+    
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
