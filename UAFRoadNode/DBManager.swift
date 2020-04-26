@@ -291,6 +291,25 @@ class DBManager: NSObject {
         return layers_to_display
     }
     
+    func nodes_to_display() -> Array<Int> {
+        var nodes_to_display = Array<Int>()
+        for layer in layersToDisplay() {
+            if openDatabase() {
+                do {
+                    let query = "SELECT \(field_nodes_id) FROM nodes WHERE \(field_nodes_layerName)=\"\(layer)\";"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                        while (rsMain!.next() == true) {
+                            let id = Int(rsMain?.string(forColumn: field_layers_name) ?? "-1")
+                            if id != -1 {
+                                nodes_to_display.append(id!)
+                            }
+                        }
+                }
+            }
+        }
+        return nodes_to_display
+    }
+    
     
     // isUnique attribute query functions
     
