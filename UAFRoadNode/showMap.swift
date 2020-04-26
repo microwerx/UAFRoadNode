@@ -11,9 +11,10 @@ import GoogleMaps
 import GooglePlaces
 
 
-let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
-
-var layer_colors = [String: String]()
+//let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
+let colors = [UIColor.black, UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green, UIColor.lightGray, UIColor.magenta, UIColor.red, UIColor.white, UIColor.yellow]
+//var layer_colors = [String: String]()
+var layer_colors = [String: UIColor]()
 
 var long_press_coords = CLLocationCoordinate2D()
 
@@ -102,7 +103,8 @@ class showMap: UIViewController {
                 if color_rounds.count == 0 {
                     color_rounds = colors
                 }
-                let color = color_rounds.randomElement() ?? ""
+                //let color = color_rounds.randomElement() ?? ""
+                let color = color_rounds.randomElement() ?? UIColor.cyan
                 color_rounds.remove(at: color_rounds.firstIndex(of: color) ?? -1)
                 layer_colors[layer] = color
             }
@@ -118,8 +120,9 @@ class showMap: UIViewController {
         for node_id in nodes_to_display {
             let layer_name = DBManager.shared.getLayerName(node_id: node_id)
             print(layer_name)
-            print(layer_colors[layer_name])
-            let color = UIColor(named: layer_colors[layer_name]!)
+            print(layer_colors[layer_name]!)
+            //let color = UIColor(named: layer_colors[layer_name]!)
+            let color = layer_colors[layer_name]!
             
             let node_coord = DBManager.shared.getNodeCoord(node_id: node_id)
             var position = CLLocationCoordinate2D()
@@ -127,7 +130,7 @@ class showMap: UIViewController {
             position.longitude = node_coord["longitude"] ?? -1.0
             
             let marker = GMSMarker(position: position)
-            marker.title = "Hello World"
+            //marker.title = "Hello World"
             marker.icon = GMSMarker.markerImage(with: color)
             nodes_on_display.append(marker)
         }
