@@ -92,6 +92,7 @@
                             <barButtonItem title="pin" image="mappin" catalog="system" id="ccw-D6-CHu">
                                 <connections>
                                     <action selector="addNode:" destination="zZI-MP-TaM" id="XIH-ZE-Hb5"/>
+                                    <segue destination="N1E-UA-Fp8" kind="show" id="quo-o1-MEP"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -108,18 +109,61 @@
         <!--Select Node Type-->
         <scene sceneID="TPN-6g-WT1">
             <objects>
-                <viewController storyboardIdentifier="Select Node Type" title="Select Node Type" id="N1E-UA-Fp8" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fAa-eE-k84">
+                <viewController storyboardIdentifier="Select Node Type" title="Select Node Type" id="N1E-UA-Fp8" customClass="SelectNodeType" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="84R-8K-bqq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-S1-hoF">
+                                <rect key="frame" x="0.0" y="122" width="414" height="625"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Node Type" id="def-T7-YmC">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="def-T7-YmC" id="6Te-6g-7Gu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDt-PW-2b1" customClass="RoundButton" customModule="UAFRoadNode" customModuleProvider="target">
+                                <rect key="frame" x="66" y="802" width="284" height="41"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3514808103" green="0.64278176409999999" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="        Select Node Type         ">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submit:" destination="N1E-UA-Fp8" eventType="touchUpInside" id="ab2-zj-3jL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <gestureRecognizers/>
-                        <viewLayoutGuide key="safeArea" id="cEk-I3-Oer"/>
+                        <viewLayoutGuide key="safeArea" id="th7-L4-QfW"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Select Node Type" prompt="Select a node type to add to the map" id="EyS-kO-Olh"/>
+                    <connections>
+                        <outlet property="myTableView" destination="M9E-S1-hoF" id="yz7-0e-vl2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rM-IG-9do" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="439"/>
+            <point key="canvasLocation" x="663.768115942029" y="438.61607142857139"/>
         </scene>
         <!--Menu-->
         <scene sceneID="gsH-hY-l9y">
