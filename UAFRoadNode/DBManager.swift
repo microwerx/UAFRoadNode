@@ -256,8 +256,8 @@ class DBManager: NSObject {
                     layerNames.append(name!)
                 }
             }
+            database.close()
         }
-        database.close()
         return layerNames
     }
     
@@ -274,8 +274,8 @@ class DBManager: NSObject {
                     }
                 }
             }
+            database.close()
         }
-        database.close()
         return isOn
     }
     
