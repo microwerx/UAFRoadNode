@@ -16,9 +16,14 @@ var pin_layer = "dogs"
 let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
 var layer_colors = [String: String]()
 
+
+
 class showMap: UIViewController {
     
-    
+    var longPressRecognizer = UILongPressGestureRecognizer()
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        print("LONG PRESS")
+    }
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearch: UITextField!
@@ -44,6 +49,12 @@ class showMap: UIViewController {
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         
+        longPressRecognizer = UILongPressGestureRecognizer(target: self,
+        action: #selector(self.longPress))
+        longPressRecognizer.minimumPressDuration = 0.5
+        longPressRecognizer.delegate = self
+        mapView.addGestureRecognizer(longPressRecognizer)
+        
         //Default View = Alaska
         let cord2D = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
         
@@ -56,6 +67,13 @@ class showMap: UIViewController {
         marker.icon = GMSMarker.markerImage(with: UIColor.green)
         marker.map = mapView
     }
+    
+  //  func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+  //      let marker = GMSMarker(position: coordinate)
+  //      marker.title = "Found You!"
+  //      marker.map = mapView
+  //  }
+    
     
     func assignLayerColors() {
         var color_rounds = colors
@@ -138,6 +156,14 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIViewController : UIGestureRecognizerDelegate
+{
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
     }
 }
 
