@@ -261,6 +261,23 @@ class DBManager: NSObject {
         return layerNames
     }
     
+    func layerIsOnDisplay(layer: String) -> Bool {
+        var isOn = false
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_layers_onDisplay) FROM layers WHERE \(field_layers_name)=\"\(layer)\";"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    if Int((rsMain?.string(forColumn: field_layers_onDisplay))!) == 1 {
+                        isOn = true
+                    }
+                }
+            }
+        }
+        database.close()
+        return isOn
+    }
+    
     // isUnique attribute query functions
     
     func isUnique_layerName(name: String) -> Bool {
@@ -314,29 +331,6 @@ class DBManager: NSObject {
         
     }
     
-    
-    func editLayerName(old_name: String, new_name: String) {
-        if openDatabase() {
-            
-            do {
-                // check that there is a value for each attribute
-               
-                let query = "UPDATE layers SET \(field_layers_name) = '\(new_name)' WHERE \(field_layers_name) = '\(old_name)';"
-                
-                if !database.executeStatements(query) {
-                    print("Failed to update layer name \"\(old_name)\" to \"\(new_name)\"")
-                    print(database.lastError(), database.lastErrorMessage())
-                }
-                
-                else{
-                    print("Updated layer name \"\(old_name)\" to \"\(new_name)\"")
-                }
-            }
-            
-        }
-        database.close()
-        
-    }
     
     func addValueType(attr: [String: String]) {
         if openDatabase() {
@@ -405,7 +399,7 @@ class DBManager: NSObject {
     }
 
     
-    // DROP Queries
+    // DELETE Queries
     
     func deleteLayerType(layer_name: String) {
         if openDatabase() {
@@ -424,6 +418,56 @@ class DBManager: NSObject {
         }
     }
 
+    // UPDATE functions
+    
+    func editLayerName(old_name: String, new_name: String) {
+        if openDatabase() {
+            do {
+                let query = "UPDATE layers SET \(field_layers_name) = '\(new_name)' WHERE \(field_layers_name) = '\(old_name)';"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to update layer name \"\(old_name)\" to \"\(new_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                }
+                
+                else{
+                    print("Updated layer name \"\(old_name)\" to \"\(new_name)\"")
+                }
+            }
+        }
+        database.close()
+    }
+    
+    func updateLayersOnDisplay(selected_layers: Array<String>) {
+        let all_layers = getLayerNames()
+        for layer in all_layers {
+            if openDatabase() {
+                do {
+                        var query = ""
+                        if selected_layers.contains(layer) {
+                            print("\(layer) onDisplay")
+                            query = "UPDATE layers SET \(field_layers_onDisplay) = 1 WHERE \(field_layers_name) = '\(layer)';"
+                        }
+                        else {
+                              print("\(layer) NOT onDisplay")
+                            query = "UPDATE layers SET \(field_layers_onDisplay) = 0 WHERE \(field_layers_name) = '\(layer)';"
+                        }
+                        if !database.executeStatements(query) {
+                            print("Failed to update \(layer) on_display")
+                            print(database.lastError(), database.lastErrorMessage())
+                        }
+                        
+                        else{
+                            print("Updated \(layer) on_display")
+                        }
+                }
+                database.close()
+            }
+        }
+    }
+    
+    
+    
     
 }
 

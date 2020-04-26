@@ -10,33 +10,30 @@ import UIKit
 
 class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var layers = Array<String>()
+    var layers = DBManager.shared.getLayerNames()
     var layers_dict = [Int : String]()
+    var selected_layers = Array<String>()
     
     var cell = UITableViewCell()
     
     @IBOutlet weak var selectLayer_tableView: UITableView!
     
     
-    //@IBOutlet weak var `switch`: UISwitch!
-    //@IBAction func layerSwitchChanged(_ sender: Any) {
-    //    if cell ==  selectLayer_tableView.cellForRow(at: IndexPath(row: (sender as AnyObject).tag, section: 0))! {
-    //        print("cell label: \(cell.textLabel?.text ?? "")")}
-    //}
-    
     override func viewWillDisappear(_ animated: Bool) {
-        //var selectedLayers = Array<String>()
-        //for (i, layer) in layers.enumerated() {
-        //    if (selectLayer_tableView.cellForRow(at: IndexPath(index: (0, i))) != nil) {
-        //        print("viewWillDissapear: \(i) : \(layer)")
-        //    }
-        //}
+        print("selected_layers: \(selected_layers)")
+        DBManager.shared.updateLayersOnDisplay(selected_layers: selected_layers)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layers = DBManager.shared.getLayerNames()
         print("loaded layers: \(layers)")
+        
+        for layer in layers {
+            if DBManager.shared.layerIsOnDisplay(layer: layer) {
+                selected_layers.append(layer)
+            }
+        }
+        
         selectLayer_tableView.dataSource = self
         selectLayer_tableView.delegate = self
     }
@@ -52,16 +49,30 @@ class SelectLayers: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func switchChanged(_ sender : UISwitch!){
-
-        print("\(layers_dict[sender.tag] ?? "") layer switch changed")
-          print("The switch is \(sender.isOn ? "ON" : "OFF")")
+        let layer = layers_dict[sender.tag] ?? ""
+        let isOn = sender.isOn
+        print("\(layer) layer switch changed")
+        print("The switch is \(isOn ? "ON" : "OFF")")
+        if isOn {
+            if !selected_layers.contains(layer) {
+                selected_layers.append(layer)
+                print("added layer: \(layer): \(selected_layers)")
+            }
+        }
+        else {
+            if selected_layers.contains(layer) {
+                selected_layers.remove(at: selected_layers.firstIndex(of: layer) ?? -1)
+                print("removed layer \(layer) from selected_layers: \(selected_layers)")
+            }
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell(withIdentifier: "Layers", for: indexPath)
         cell.textLabel?.text = layers[indexPath.row]
         let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
+        switchView.setOn(DBManager.shared.layerIsOnDisplay(layer: cell.textLabel?.text ?? ""), animated: true)
         switchView.tag = indexPath.row // for detect which row switch Changed
         layers_dict[indexPath.row] = cell.textLabel?.text
         switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
