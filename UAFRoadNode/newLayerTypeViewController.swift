@@ -52,6 +52,8 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
             // reset the attribute dictionary
             attribute_query_dicts = Array<[String: Any]>()
             layer_name.text = ""
+            assignLayerColors(hard_reset: true)
+            
         }
         else {
 

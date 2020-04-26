@@ -11,12 +11,30 @@ import GoogleMaps
 import GooglePlaces
 
 
-//let colors = ["black", "blue", "brown", "cyan", "darkGray", "gray", "green", "lightGray", "magenta", "red", "white", "yellow"]
-let colors = [UIColor.black, UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green, UIColor.lightGray, UIColor.magenta, UIColor.red, UIColor.white, UIColor.yellow]
-//var layer_colors = [String: String]()
+let colors = [UIColor.black, UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.green, UIColor.magenta, UIColor.red, UIColor.white, UIColor.yellow]
+
+var color_rounds = Array<UIColor>()
+
 var layer_colors = [String: UIColor]()
 
 var long_press_coords = CLLocationCoordinate2D()
+
+
+func assignLayerColors(hard_reset: Bool) {
+    if hard_reset {
+        layer_colors = [String: UIColor]()
+        color_rounds = colors
+    }
+    for layer in DBManager.shared.getLayerNames() {
+        if color_rounds.count == 0 {
+            color_rounds = colors
+        }
+        if layer_colors[layer] == nil {
+            let color = color_rounds.popLast()
+            layer_colors[layer] = color
+        }
+    }
+}
 
 
 class showMap: UIViewController {
@@ -39,7 +57,6 @@ class showMap: UIViewController {
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if !limit_longpress {
-            print("LONG PRESS")
             limit_longpress = true
             performSegue(withIdentifier: "NameNodeSegue", sender: sender)
         }
@@ -47,8 +64,8 @@ class showMap: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         limit_longpress = false
-        assignLayerColors()
-        print(layer_colors)
+        assignLayerColors(hard_reset: false)
+        print("layer_colors: /(layer_colors)")
         makeNodes()
         for node in nodes_on_display {
             node.map = mapView
@@ -78,38 +95,11 @@ class showMap: UIViewController {
         
         self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 4.5)
         self.mapView.delegate = self
-        //assignLayerColors()
-        //displayNodes()
-        //for node in no
         
-        //let position = CLLocationCoordinate2D(latitude: 65.905217, longitude: -152.047295)
-        //let marker = GMSMarker(position: position)
-        //marker.title = "Hello World"
-        //marker.icon = GMSMarker.markerImage(with: UIColor.green)
-        //marker.map = mapView
+        assignLayerColors(hard_reset: true)
+        
     }
     
-  //  func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-  //      let marker = GMSMarker(position: coordinate)
-  //      marker.title = "Found You!"
-  //      marker.map = mapView
-  //  }
-    
-    
-    func assignLayerColors() {
-        var color_rounds = colors
-        for layer in DBManager.shared.layersToDisplay() {
-            if layer_colors[layer] == nil {
-                if color_rounds.count == 0 {
-                    color_rounds = colors
-                }
-                //let color = color_rounds.randomElement() ?? ""
-                let color = color_rounds.randomElement() ?? UIColor.cyan
-                color_rounds.remove(at: color_rounds.firstIndex(of: color) ?? -1)
-                layer_colors[layer] = color
-            }
-        }
-    }
     
     func makeNodes() {
         let nodes_to_display = DBManager.shared.nodes_to_display()
@@ -121,7 +111,6 @@ class showMap: UIViewController {
             let layer_name = DBManager.shared.getLayerName(node_id: node_id)
             print(layer_name)
             print(layer_colors[layer_name]!)
-            //let color = UIColor(named: layer_colors[layer_name]!)
             let color = layer_colors[layer_name]!
             
             let node_coord = DBManager.shared.getNodeCoord(node_id: node_id)
@@ -136,22 +125,18 @@ class showMap: UIViewController {
         }
     }
     
-    //func placeNodes() {
-    //    txtSearch.resignFirstResponder()
-    //    let acController = GMSAutocompleteViewController()
-    //    acController.delegate = self
-    //    present(acController, animated: true, completion: nil)
-   // }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         tap_coords = coordinate
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
     }
     
+    
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         long_press_coords = coordinate
         print("You longpressed at \(coordinate.latitude), \(coordinate.longitude)")
     }
+    
     
     func getCurrentLocation() {
             // Ask for Authorisation from the User.
@@ -167,6 +152,7 @@ class showMap: UIViewController {
             }
         }
     
+    
     func showAlert(title: String, message: String, handlerOK:((UIAlertAction) -> Void)?, handlerCancel:((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: . alert)
         let action = UIAlertAction(title: "OK", style: .destructive, handler: handlerOK)
@@ -179,6 +165,7 @@ class showMap: UIViewController {
     }
 }
 
+
 extension showMap: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -186,6 +173,7 @@ extension showMap: CLLocationManagerDelegate {
         
     }
 }
+
 
 extension showMap: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
@@ -213,14 +201,17 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
 
     }
     
+    
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         print(error.localizedDescription)
     }
+    
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
 }
+
 
 extension UIViewController : UIGestureRecognizerDelegate
 {
@@ -237,46 +228,3 @@ extension showMap : GMSMapViewDelegate {
         })
     }
 }
-
-
-// Code from the Homepage we got rid of
-// will be useful for getting the lat/long info. 
-
-//class ViewController: UIViewController {
-//
-//
-//    let locationManager = CLLocationManager()
-//
-//    @IBOutlet weak var lblLocation: UILabel!
-//
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view.
-//
-//        getCurrentLocation()
-//    }
-//
-//    func getCurrentLocation() {
-//        // Ask for Authorisation from the User.
-//        self.locationManager.requestAlwaysAuthorization()
-//
-//        // For use in foreground
-//        self.locationManager.requestWhenInUseAuthorization()
-//
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-//            locationManager.startUpdatingLocation()
-//        }
-//    }
-//
-//}
-//
-//extension ViewController: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-//        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//        lblLocation.text = "latitude = \(locValue.latitude), longitude = \(locValue.longitude)"
-//    }
-//}
