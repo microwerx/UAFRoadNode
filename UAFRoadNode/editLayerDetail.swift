@@ -18,17 +18,36 @@ class editLayerDetail: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return true
     }
-     
+    
     @IBAction func submitNewLayerName(_ sender: Any) {
         
-        // TODO: Check db and confirm created_locally attribute is true
-        // Disallow update and issue warning if false.
+        // TODO: [Check db and confirm created_locally attribute is true
+        // Disallow update and issue warning if false.]
         
-        DBManager.shared.editLayerName(old_name: layerName.text!, new_name: newLayerName.text!)
-        _ = navigationController?.popViewController(animated: true)
+        if(newLayerName.text != "") {
+            let confirmMessage = UIAlertController(title: "Confirm", message: "You have successfully changed the layer name.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            confirmMessage.addAction(ok)
+            self.present(confirmMessage, animated: true, completion: nil)
+            
+            DBManager.shared.editLayerName(old_name: layerName.text!, new_name: newLayerName.text!)
+            _ = navigationController?.popViewController(animated: true)
+        }
         
+        if(newLayerName.text == "") {
+            let errorMessage = UIAlertController(title: "Error", message: "You need to enter a new name.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            errorMessage.addAction(ok)
+            self.present(errorMessage, animated: true, completion: nil)
+        }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

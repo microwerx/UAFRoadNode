@@ -16,7 +16,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     var attribute_count = 0
     
     var attribute_query_dicts = Array<[String: Any]>()
-
+    
     @IBOutlet weak var layer_name: UITextField!
     
     @IBOutlet weak var valueType_tableView: UITableView!
@@ -43,12 +43,25 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
                     DBManager.shared.addAttribute(attr: attr)
                 }
                 DBManager.shared.selectAttributesQuery()
+                let confirmMessage = UIAlertController(title: "Confirm", message: "You have successfully added a new layer.", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+                })
+                
+                confirmMessage.addAction(ok)
+                self.present(confirmMessage, animated: true, completion: nil)
             }
             else {
-                // TODO: display an on screen warning
+                let errorMessage = UIAlertController(title: "Error", message: "Layer name already exists.", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+                })
+                
+                errorMessage.addAction(ok)
+                self.present(errorMessage, animated: true, completion: nil)
                 print("Error: layer name already exists.")
             }
-                
+            
             // reset the attribute dictionary
             attribute_query_dicts = Array<[String: Any]>()
             layer_name.text = ""
@@ -56,10 +69,15 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
             
         }
         else {
-
-            // TODO: [display an on screen warning]
+            
+            let errorMessage = UIAlertController(title: "Error", message: "Error: Attempted to add a layer type with no attributes", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            errorMessage.addAction(ok)
+            self.present(errorMessage, animated: true, completion: nil)
             print("Error: Attempted to add a layer type with no attributes")
-
         }
         
     }
@@ -67,11 +85,43 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func addAttribute(_ sender: UIButton) {
         let attributes_attr = ["name": attribute_name.text!, "layer_name": "", "value_type_id": DBManager.shared.valueTypeIDFromName(name: selectedValueType)] as [String : Any]?
-        attribute_query_dicts.append(attributes_attr ?? ["": -1])
-        attribute_name.text = ""
-        print("adding attirbutes to list")
-        print(attributes_attr as Any)
-        attribute_count += 1
+        
+        if(layer_name.text != "") {
+            if(attribute_name.text! != "") {
+                attribute_query_dicts.append(attributes_attr ?? ["": -1])
+                attribute_name.text = ""
+                print("adding attirbutes to list")
+                print(attributes_attr as Any)
+                attribute_count += 1
+                
+                let confirmMessage = UIAlertController(title: "Confirm", message: "You have successfully added a new attribute.", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+                })
+                
+                confirmMessage.addAction(ok)
+                self.present(confirmMessage, animated: true, completion: nil)
+            }
+            
+            if(attribute_name.text! == "") {
+                let errorMessage = UIAlertController(title: "Error", message: "You need to enter an attribute name.", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+                })
+                
+                errorMessage.addAction(ok)
+                self.present(errorMessage, animated: true, completion: nil)
+            }
+        }
+        if(layer_name.text == "") {
+            let errorMessage = UIAlertController(title: "Error", message: "You need to assign a layer name first.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            errorMessage.addAction(ok)
+            self.present(errorMessage, animated: true, completion: nil)
+        }
     }
     
     
@@ -98,15 +148,15 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         valueType_tableView.delegate = self
         layer_name.delegate = self
         attribute_name.delegate = self
-    
-
+        
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -124,5 +174,5 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         
         return cell
     }
-
+    
 }

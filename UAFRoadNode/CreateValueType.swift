@@ -9,12 +9,12 @@
 import UIKit
 
 class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
+    
     @IBOutlet weak var myTableView: UITableView!
     
     let dataTypes = ["INTEGER", "REAL", "TEXT", "BLOB"]
     
-   
+    
     @IBOutlet weak var value_type_name: UITextField!
     
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
@@ -28,7 +28,7 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         myTableView.dataSource = self
         myTableView.delegate = self
         value_type_name.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -37,10 +37,30 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedDatatype = dataTypes[indexPath.row]
     }
-  
+    
     // TODO: [display an on screen warning if already exists]
     @IBAction func submit(_ sender: UIButton) {
         let value_type_attr = ["name": value_type_name.text!, "data_type": selectedDatatype]
+        
+        if(value_type_name.text != "") {
+            let confirmMessage = UIAlertController(title: "Confirm", message: "You have successfully added a new value type.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            confirmMessage.addAction(ok)
+            self.present(confirmMessage, animated: true, completion: nil)
+        }
+        
+        if(value_type_name.text == "") {
+            let errorMessage = UIAlertController(title: "Error", message: "You need to enter a value type name.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            errorMessage.addAction(ok)
+            self.present(errorMessage, animated: true, completion: nil)
+        }
         
         DBManager.shared.addValueType(attr: value_type_attr)
         DBManager.shared.selectValueTypeQuery()
@@ -66,5 +86,5 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         return cell
     }
-
+    
 }
