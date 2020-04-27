@@ -22,6 +22,8 @@
 		8AB7879423F28D58007F8018 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7879323F28D58007F8018 /* Podfile */; };
 		B516E005244BFFB300065399 /* CreateValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516E004244BFFB300065399 /* CreateValueType.swift */; };
 		B53C0C692456770700772A82 /* NodeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C682456770700772A82 /* NodeMenu.swift */; };
+		B53C0C6B24567C7300772A82 /* AddData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C6A24567C7300772A82 /* AddData.swift */; };
+		B53C0C6D24567C9D00772A82 /* ViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C6C24567C9D00772A82 /* ViewData.swift */; };
 		B53C2B672456029B00784E78 /* NameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C2B662456029B00784E78 /* NameNode.swift */; };
 		B59E5B09244BCD0F00A2FD2E /* newLayerTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E5B08244BCD0F00A2FD2E /* newLayerTypeViewController.swift */; };
 		B5BEC1FB24558D5000103831 /* SelectNodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BEC1FA24558D5000103831 /* SelectNodeType.swift */; };
@@ -72,6 +74,8 @@
 		8AB7879323F28D58007F8018 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B516E004244BFFB300065399 /* CreateValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateValueType.swift; sourceTree = "<group>"; };
 		B53C0C682456770700772A82 /* NodeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMenu.swift; sourceTree = "<group>"; };
+		B53C0C6A24567C7300772A82 /* AddData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddData.swift; sourceTree = "<group>"; };
+		B53C0C6C24567C9D00772A82 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
 		B53C2B662456029B00784E78 /* NameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameNode.swift; sourceTree = "<group>"; };
 		B59E5B08244BCD0F00A2FD2E /* newLayerTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newLayerTypeViewController.swift; sourceTree = "<group>"; };
 		B5BEC1FA24558D5000103831 /* SelectNodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNodeType.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				B5BEC1FA24558D5000103831 /* SelectNodeType.swift */,
 				B53C2B662456029B00784E78 /* NameNode.swift */,
 				B53C0C682456770700772A82 /* NodeMenu.swift */,
+				B53C0C6A24567C7300772A82 /* AddData.swift */,
+				B53C0C6C24567C9D00772A82 /* ViewData.swift */,
 			);
 			path = UAFRoadNode;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53C2B672456029B00784E78 /* NameNode.swift in Sources */,
+				B53C0C6B24567C7300772A82 /* AddData.swift in Sources */,
 				8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */,
 				8A4214F3244D7129004480CA /* exportFiles.swift in Sources */,
 				8A4214F1244D64D9004480CA /* roundButton.swift in Sources */,
@@ -424,6 +431,7 @@
 				B5BEC1FB24558D5000103831 /* SelectNodeType.swift in Sources */,
 				8A4214ED244D5DE6004480CA /* editLayerType.swift in Sources */,
 				B5F4655F243FBE86008D7190 /* FMDatabaseAdditions.m in Sources */,
+				B53C0C6D24567C9D00772A82 /* ViewData.swift in Sources */,
 				B5F4655E243FBE86008D7190 /* FMDatabasePool.m in Sources */,
 				B5F46561243FBE86008D7190 /* FMDatabaseQueue.m in Sources */,
 				8A740CB3242E8FA200A5436A /* AppDelegate.swift in Sources */,

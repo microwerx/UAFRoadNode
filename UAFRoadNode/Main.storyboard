@@ -44,6 +44,38 @@
             </objects>
             <point key="canvasLocation" x="2567" y="-271"/>
         </scene>
+        <!--View Data-->
+        <scene sceneID="tCC-tq-yW0">
+            <objects>
+                <viewController id="xbQ-Oi-dZm" customClass="ViewData" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2W7-xf-TNC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="B7Q-vp-TUJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zjf-ME-NQ6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c8Y-65-qXo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="674" y="-1030"/>
+        </scene>
+        <!--Add Data-->
+        <scene sceneID="7Ke-13-kMr">
+            <objects>
+                <viewController id="Mpe-gl-jmz" customClass="AddData" customModule="UAFRoadNode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uS4-X7-gg2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="C0l-uI-ePd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="B7Q-sP-Ml5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xg3-4c-xYH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1613" y="-1753"/>
+        </scene>
         <!--Node Menu-->
         <scene sceneID="yOu-i5-L4D">
             <objects>
@@ -77,6 +109,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="view_node_data:" destination="rmc-ZR-eMd" eventType="touchUpInside" id="5gI-gb-pDn"/>
+                                    <segue destination="xbQ-Oi-dZm" kind="show" id="Dy4-mV-VF9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mzG-cF-TXO" customClass="RoundButton" customModule="UAFRoadNode" customModuleProvider="target">
@@ -104,6 +137,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="add_node_data:" destination="rmc-ZR-eMd" eventType="touchUpInside" id="CcM-dE-Y8b"/>
+                                    <segue destination="Mpe-gl-jmz" kind="show" id="B0E-B2-RnD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hfp-qJ-496" customClass="RoundButton" customModule="UAFRoadNode" customModuleProvider="target">

@@ -14,15 +14,11 @@ class NodeMenu: UIViewController {
     
     @IBOutlet weak var node_name_label: UILabel!
     
-    
     @IBAction func view_node_data(_ sender: Any) {
-        
     }
-    
     
     @IBAction func add_node_data(_ sender: Any) {
     }
-    
     
     @IBAction func delete_node(_ sender: Any) {
     }
