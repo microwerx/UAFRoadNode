@@ -11,7 +11,7 @@ import UIKit
 class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     
-    let animals: [String] = ["Test1", "Test2", "Test3", "Test4", "Test5"]
+    let rows: [String] = ["Test1", "Test2", "Test3", "Test4", "Test5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +20,15 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     
     var allCellsText = [String?](repeating: nil, count:5)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return animals.count
+        return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! addDataTableViewCell
+        // look at addDataTableViewCell.swift file to see UILabel/Text Field names 
         cell.addDataTextField?.delegate = self
         cell.addDataTextField?.text = ""
-        cell.addDataTextField?.placeholder = animals[indexPath.row]
         cell.addDataTextField?.autocorrectionType = UITextAutocorrectionType.no
         cell.addDataTextField?.autocapitalizationType = UITextAutocapitalizationType.none
         cell.addDataTextField?.adjustsFontSizeToFitWidth = true;
@@ -36,9 +36,9 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let indexOf = animals.firstIndex(of:textField.placeholder!)
+        let indexOf = rows.firstIndex(of:textField.placeholder!)
         print(indexOf as Any)
-        if(textField.placeholder! == animals[indexOf!]){
+        if(textField.placeholder! == rows[indexOf!]){
             if( indexOf! <= (allCellsText.count - 1)){
                 allCellsText.remove(at: indexOf!)
             }
