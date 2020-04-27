@@ -363,6 +363,22 @@ class DBManager: NSObject {
         }
     
     
+    func getNodeName(node_id: Int) -> String {
+        var name = String()
+            if openDatabase() {
+                do {
+                    let query = "SELECT \(field_nodes_name) FROM nodes WHERE \(field_nodes_id)=\"\(node_id)\";"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                        while (rsMain!.next() == true) {
+                            name = rsMain?.string(forColumn: field_nodes_name) ?? ""
+                            }
+                        }
+                database.close()
+                }
+            return name
+        }
+    
+    
     // isUnique attribute query functions
     
     func isUnique_layerName(name: String) -> Bool {

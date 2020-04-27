@@ -21,6 +21,7 @@
 		8AB4881B243AACE40049796B /* importFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB4881A243AACE40049796B /* importFiles.swift */; };
 		8AB7879423F28D58007F8018 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7879323F28D58007F8018 /* Podfile */; };
 		B516E005244BFFB300065399 /* CreateValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516E004244BFFB300065399 /* CreateValueType.swift */; };
+		B53C0C692456770700772A82 /* NodeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C682456770700772A82 /* NodeMenu.swift */; };
 		B53C2B672456029B00784E78 /* NameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C2B662456029B00784E78 /* NameNode.swift */; };
 		B59E5B09244BCD0F00A2FD2E /* newLayerTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E5B08244BCD0F00A2FD2E /* newLayerTypeViewController.swift */; };
 		B5BEC1FB24558D5000103831 /* SelectNodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BEC1FA24558D5000103831 /* SelectNodeType.swift */; };
@@ -70,6 +71,7 @@
 		8AB4881A243AACE40049796B /* importFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = importFiles.swift; sourceTree = "<group>"; };
 		8AB7879323F28D58007F8018 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B516E004244BFFB300065399 /* CreateValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateValueType.swift; sourceTree = "<group>"; };
+		B53C0C682456770700772A82 /* NodeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMenu.swift; sourceTree = "<group>"; };
 		B53C2B662456029B00784E78 /* NameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameNode.swift; sourceTree = "<group>"; };
 		B59E5B08244BCD0F00A2FD2E /* newLayerTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newLayerTypeViewController.swift; sourceTree = "<group>"; };
 		B5BEC1FA24558D5000103831 /* SelectNodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNodeType.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				B516E004244BFFB300065399 /* CreateValueType.swift */,
 				B5BEC1FA24558D5000103831 /* SelectNodeType.swift */,
 				B53C2B662456029B00784E78 /* NameNode.swift */,
+				B53C0C682456770700772A82 /* NodeMenu.swift */,
 			);
 			path = UAFRoadNode;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				B5F46561243FBE86008D7190 /* FMDatabaseQueue.m in Sources */,
 				8A740CB3242E8FA200A5436A /* AppDelegate.swift in Sources */,
 				8A7271DB2404F91B002DB500 /* showMap.swift in Sources */,
+				B53C0C692456770700772A82 /* NodeMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

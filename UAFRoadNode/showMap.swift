@@ -19,6 +19,7 @@ var layer_colors = [String: UIColor]()
 
 var long_press_coords = CLLocationCoordinate2D()
 
+var selected_node = Int()
 
 func assignLayerColors(hard_reset: Bool) {
     if hard_reset {
@@ -75,6 +76,7 @@ class showMap: UIViewController, GMSMapViewDelegate {
         for (_, marker) in nodes_on_display {
             marker.map = mapView
         }
+        selected_node = Int()
     }
     
 
@@ -132,13 +134,13 @@ class showMap: UIViewController, GMSMapViewDelegate {
     
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        var node_id = Int()
         for (node, mark) in nodes_on_display {
             if marker == mark {
-                node_id = node
+                selected_node = node
             }
         }
-        print("Clicked Node ID: \(node_id)")
+        print("Clicked Node ID: \(selected_node)")
+        performSegue(withIdentifier: "NodeMenuSegue", sender: mapView)
         return true
     }
     
