@@ -50,6 +50,11 @@ class showMap: UIViewController {
     var nodes_on_display = Array<GMSMarker>()
     
     
+    @IBAction func searchAddress(_ sender: UIButton) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self as GMSAutocompleteViewControllerDelegate
+        present(autocompleteController, animated: true, completion: nil)
+    }
     
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -184,18 +189,18 @@ extension showMap: GMSAutocompleteViewControllerDelegate {
         
         let cord2D = CLLocationCoordinate2D(latitude: (place.coordinate.latitude), longitude: (place.coordinate.longitude))
         
-        var markerArray = [GMSMarker]()
-        let marker = GMSMarker()
-        marker.position =  cord2D
-        marker.title = place.name
-        marker.snippet = "node"
-        
-        let markerImage = UIImage(named: "node_pin")!
-        let markerView = UIImageView(image: markerImage)
-        marker.iconView = markerView
-        marker.map = self.mapView
-        markerArray.append(marker)
-        
+//        var markerArray = [GMSMarker]()
+//        let marker = GMSMarker()
+//        marker.position =  cord2D
+//        marker.title = place.name
+//        marker.snippet = "node"
+//
+//        let markerImage = UIImage(named: "node_pin")!
+//        let markerView = UIImageView(image: markerImage)
+//        marker.iconView = markerView
+//        marker.map = self.mapView
+//        markerArray.append(marker)
+//
         self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D, zoom: 15)
         self.mapView.delegate = self
 
