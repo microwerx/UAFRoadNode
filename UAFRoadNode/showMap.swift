@@ -37,7 +37,7 @@ func assignLayerColors(hard_reset: Bool) {
 }
 
 
-class showMap: UIViewController {
+class showMap: UIViewController, GMSMapViewDelegate {
     
     let locationManager = CLLocationManager()
     
@@ -47,7 +47,7 @@ class showMap: UIViewController {
     
     var longPressRecognizer = UILongPressGestureRecognizer()
     
-    var nodes_on_display = Array<GMSMarker>()
+    var nodes_on_display = [Int: GMSMarker]()
     
     
     
@@ -67,8 +67,8 @@ class showMap: UIViewController {
         assignLayerColors(hard_reset: false)
         print("layer_colors: /(layer_colors)")
         makeNodes()
-        for node in nodes_on_display {
-            node.map = mapView
+        for (_, marker) in nodes_on_display {
+            marker.map = mapView
         }
     }
     
@@ -103,10 +103,10 @@ class showMap: UIViewController {
     
     func makeNodes() {
         let nodes_to_display = DBManager.shared.nodes_to_display()
-        for node in nodes_on_display {
-            node.map = nil
+        for (_, mark) in nodes_on_display {
+            mark.map = nil
         }
-        nodes_on_display = Array<GMSMarker>()
+        nodes_on_display = [Int: GMSMarker]()
         for node_id in nodes_to_display {
             let layer_name = DBManager.shared.getLayerName(node_id: node_id)
             print(layer_name)
@@ -121,10 +121,21 @@ class showMap: UIViewController {
             let marker = GMSMarker(position: position)
             //marker.title = "Hello World"
             marker.icon = GMSMarker.markerImage(with: color)
-            nodes_on_display.append(marker)
+            nodes_on_display[node_id] = marker
         }
     }
     
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        var node_id = Int()
+        for (node, mark) in nodes_on_display {
+            if marker == mark {
+                node_id = node
+            }
+        }
+        print("Clicked Node ID: \(node_id)")
+        return true
+    }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         tap_coords = coordinate
@@ -162,6 +173,12 @@ class showMap: UIViewController {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
+        print("Clicked on marker")
+        showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in marker.map=nil }, handlerCancel: { actionCancel in print("Action cancel")
+        })
     }
 }
 
@@ -221,10 +238,10 @@ extension UIViewController : UIGestureRecognizerDelegate
     }
 }
 
-extension showMap : GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-        print("Clicked on marker")
-        showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in marker.map=nil }, handlerCancel: { actionCancel in print("Action cancel")
-        })
-    }
-}
+//extension showMap : GMSMapViewDelegate {
+//    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
+//        print("Clicked on marker")
+//        showAlert(title: "Node DELETE Alert", message: "You sure you want to delete this node?", handlerOK: { action in marker.map=nil }, handlerCancel: { actionCancel in print("Action cancel")
+//        })
+//    }
+//}
