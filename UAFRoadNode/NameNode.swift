@@ -2,7 +2,7 @@
 //  NameNode.swift
 //  UAFRoadNode
 //
-//  Created by Alex Lewandowski  on 4/26/20.
+//  Created by Nami Kim and Alex Lewandowski  on 4/26/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 

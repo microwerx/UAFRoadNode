@@ -2,7 +2,7 @@
 //  selectLayers.swift
 //  UAFRoadNode
 //
-//  Created by Alex Lewandowski  on 4/20/20.
+//  Created by Alex Lewandowski and Nami Kim  on 4/20/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 

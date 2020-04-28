@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UAFRoadNode
 //
-//  Created by Alex Lewandowski  on 2/10/20.
+//  Created by Alex Lewandowski and Nami Kim  on 2/10/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 
 

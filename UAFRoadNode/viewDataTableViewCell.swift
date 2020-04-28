@@ -2,7 +2,7 @@
 //  viewDataTableViewCell.swift
 //  UAFRoadNode
 //
-//  Created by Nami Kim on 4/27/20.
+//  Created by Alex Lewandowski and Nami Kim on 4/27/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 

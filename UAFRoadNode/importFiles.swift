@@ -2,7 +2,7 @@
 //  importFiles.swift
 //  UAFRoadNode
 //
-//  Created by Nami Kim on 4/5/20.
+//  Created by Nami Kim and Alex Lewandowski on 4/5/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 

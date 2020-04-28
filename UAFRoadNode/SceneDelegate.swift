@@ -1,7 +1,7 @@
 //
 //  SceneDelegate.swift
 //
-//  Created by Nami Kim  on 3/27/20
+//  Created by Alex Lewandowski and Nami Kim  on 3/27/20
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 

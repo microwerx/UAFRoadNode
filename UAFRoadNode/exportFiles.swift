@@ -2,7 +2,7 @@
 //  exportFiles.swift
 //  UAFRoadNode
 //
-//  Created by Nami Kim on 4/19/20.
+//  Created by Nami Kim and Alex Lewandowski on 4/19/20.
 //  Copyright © 2020 UAFRoadNode. All rights reserved.
 //
 // Will not be implemented but a dummy function will be written 
