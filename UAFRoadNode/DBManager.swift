@@ -208,6 +208,27 @@ class DBManager: NSObject {
         }
     
     
+    func selectDataPointQuery() {
+    if openDatabase() {
+              do {
+                  let query = "SELECT * FROM data_point"
+                  let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                  while (rsMain!.next() == true) {
+                      let id = rsMain?.string(forColumn: field_data_id) ?? ""
+                      let int_value = rsMain?.string(forColumn: field_data_integerValue) ?? ""
+                      let text_value = rsMain?.string(forColumn: field_data_textValue) ?? ""
+                      let real_value = rsMain?.string(forColumn: field_data_real_value) ?? ""
+                      let numeric_value = rsMain?.string(forColumn: field_data_numeric_value) ?? ""
+                      let dateTimeAdded = rsMain?.string(forColumn: field_data_dateTimeAdded) ?? ""
+                      let attribute_id = rsMain?.string(forColumn: field_data_attrID) ?? ""
+                      let node_id = rsMain?.string(forColumn: field_data_nodeID) ?? ""
+                    print("Data Point Query:  data_point.id: \(id)\n data_point.int_value: \(int_value)\n data_point.text_value: \(text_value)\n data_point.real_value: \(real_value)\n data_point.numeric_value: \(numeric_value)\n data_point.datTimeAdded\(dateTimeAdded)\n data_point.attribute_id: \(attribute_id)\n data_point.node_id: \(node_id)\n")
+                  }
+              }
+              database.close()
+          }
+      }
+
     
     // Other select Queries
     
@@ -475,7 +496,6 @@ class DBManager: NSObject {
     
     func addValueType(attr: [String: String]) {
         if openDatabase() {
-            
             do {
                 // check that there is a value for each attribute
                 var empty = false
@@ -486,37 +506,27 @@ class DBManager: NSObject {
                 }
                 if !empty {
                     let query = "INSERT INTO value_types (\(field_valueTypes_name), \(field_valueTypes_dataType)) VALUES (\"\(attr[field_valueTypes_name] ?? "")\", \"\(attr[field_valueTypes_dataType] ?? "")\");"
-                    
                     if !database.executeStatements(query) {
                         print("Failed to insert new layer type")
                         print(database.lastError(), database.lastErrorMessage())
-                        
                     }
                 }
                 else{
                     print("Error: passed null value/s in dict to addLayerType")
-                    
                 }
             }
-            
         }
         database.close()
-        
     }
     
     
     func addAttribute(attr: [String: Any]) {
         if openDatabase() {
-            
             do {
-                // check that there is a value for each attribute
-                
                 let query = "INSERT INTO attributes (\(field_attributes_name), \(field_attributes_layerName), \(field_attributes_valueTypeID)) VALUES (\"\(attr[field_attributes_name] ?? "")\", \"\(attr[field_attributes_layerName] ?? "")\", \"\(attr[field_attributes_valueTypeID] ?? -1)\");"
-                
                 if !database.executeStatements(query) {
                     print("Failed to insert new atrtribute type")
                     print(database.lastError(), database.lastErrorMessage())
-                    
                 }
             }
         }
@@ -528,7 +538,6 @@ class DBManager: NSObject {
         if openDatabase() {
             do {
                 let query = "INSERT INTO nodes (\(field_nodes_name), \(field_nodes_lat), \(field_nodes_long), \(field_nodes_layerName)) VALUES (\"\(attr[field_nodes_name] ?? "")\", \"\(attr[field_nodes_lat] ?? -1.0)\", \"\(attr[field_nodes_long] ?? -1.0)\", \"\(attr[field_nodes_layerName] ?? "")\");"
-                
                 if !database.executeStatements(query) {
                     print("Failed to add new node")
                     print(database.lastError(), database.lastErrorMessage())
@@ -537,7 +546,24 @@ class DBManager: NSObject {
         }
         selectNodesQuery()
         database.close()
-        
+    }
+    
+    
+    func addDataPoint(attributes: [Int: [String: Any]]) {
+        for (_, attr_info) in attributes {
+            if openDatabase() {
+                do {
+                    let query = "INSERT INTO data_point (\(field_data_integerValue), \(field_data_textValue), \(field_data_real_value), \(field_data_numeric_value), \(field_data_dateTimeAdded), \(field_data_attrID), \(field_data_nodeID)) VALUES (\(attr_info[field_data_integerValue] ?? -1), \"\(attr_info[field_data_textValue] ?? "")\", \(attr_info[field_data_real_value] ?? -1.0), \(attr_info[field_data_numeric_value] ?? -1), \"\(attr_info[field_data_dateTimeAdded] ?? "")\", \(attr_info[field_data_attrID] ?? -1), \(attr_info[field_data_nodeID] ?? -1));"
+                    print(query)
+                    if !database.executeStatements(query) {
+                        print("Failed to insert new atrtribute type")
+                        print(database.lastError(), database.lastErrorMessage())
+                    }
+                }
+            }
+            database.close()
+            selectDataPointQuery()
+        }
     }
 
     
