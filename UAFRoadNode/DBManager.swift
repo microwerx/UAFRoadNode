@@ -378,23 +378,39 @@ class DBManager: NSObject {
             return name
         }
     
+    
+    func getDataType(value_type_id: Int) -> String {
+    var name = String()
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM value_types WHERE \(field_valueTypes_id)=\"\(value_type_id)\";"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        name = rsMain?.string(forColumn: field_valueTypes_id) ?? ""
+                        }
+                    }
+            database.close()
+            }
+        return name
+    }
+    
+    
 
-    func getLayerAttributes(layer_name: String) -> Array<[Int: [String: String]]> {
-        var attributes = Array<[Int: [String: String]]>()
+    func getLayerAttributes(layer_name: String) -> [Int: [String: String]] {
+        var attributes = [Int: [String: String]]()
             if openDatabase() {
                 do {
-                    let query = "SELECT a.\(field_attributes_id), a.\(field_attributes_name) AS a_name, v.\(field_valueTypes_name) AS v_name FROM attributes AS a INNER JOIN value_types AS v ON a.\(field_attributes_valueTypeID) = v.\(field_valueTypes_id) AND a.\(field_attributes_layerName)=\"\(layer_name)\";"
+                    let query = "SELECT a.\(field_attributes_id), a.\(field_attributes_name) AS a_name, v.\(field_valueTypes_name) AS v_name, v.\(field_valueTypes_dataType) FROM attributes AS a INNER JOIN value_types AS v ON a.\(field_attributes_valueTypeID) = v.\(field_valueTypes_id) AND a.\(field_attributes_layerName)=\"\(layer_name)\";"
                     let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
                         while (rsMain!.next() == true) {
                             let attr_name = rsMain?.string(forColumn: "a_name") ?? ""
                             let attr_id = Int(rsMain?.string(forColumn: field_attributes_id) ?? "") ?? -1
                             let value_type_name = rsMain?.string(forColumn: "v_name") ?? ""
+                            let value_data_type = rsMain?.string(forColumn: field_valueTypes_dataType) ?? ""
                             var details = [String: String]()
-                            var attr_details = [Int: [String: String]]()
                             details["attr_name"] = attr_name
-                            details["value_type_name"] = value_type_name
-                            attr_details[attr_id] = details
-                            attributes.append(attr_details)
+                            details[value_type_name] = value_data_type
+                            attributes[attr_id] = details
                             }
                         }
                 database.close()
