@@ -10,12 +10,18 @@ import UIKit
 
 class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    // attributes [id: (name, value_type, data_type)
+    var attributes = Array<[Int: [String: String]]>()
+    var layer = String()
+        
     var allCellsText = [String?](repeating: nil, count:5)
     var inputText: [String] = ["Test1", "Test2", "Test3", "Test4", "Test5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        layer = DBManager.shared.getLayerName(node_id: selected_node)
+        attributes = DBManager.shared.getLayerAttributes(layer_name: layer)
+        print(attributes)
     }
     
     
@@ -45,8 +51,6 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     func textFieldDidEndEditing(_ textField: UITextField) {
         print(textField.tag)
         print(textField.text ?? "")
-        print(cells)
-        
     }
     
     //delegate method

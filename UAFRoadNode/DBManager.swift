@@ -378,6 +378,30 @@ class DBManager: NSObject {
             return name
         }
     
+
+    func getLayerAttributes(layer_name: String) -> Array<[Int: [String: String]]> {
+        var attributes = Array<[Int: [String: String]]>()
+            if openDatabase() {
+                do {
+                    let query = "SELECT a.\(field_attributes_id), a.\(field_attributes_name) AS a_name, v.\(field_valueTypes_name) AS v_name FROM attributes AS a INNER JOIN value_types AS v ON a.\(field_attributes_valueTypeID) = v.\(field_valueTypes_id) AND a.\(field_attributes_layerName)=\"\(layer_name)\";"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                        while (rsMain!.next() == true) {
+                            let attr_name = rsMain?.string(forColumn: "a_name") ?? ""
+                            let attr_id = Int(rsMain?.string(forColumn: field_attributes_id) ?? "") ?? -1
+                            let value_type_name = rsMain?.string(forColumn: "v_name") ?? ""
+                            var details = [String: String]()
+                            var attr_details = [Int: [String: String]]()
+                            details["attr_name"] = attr_name
+                            details["value_type_name"] = value_type_name
+                            attr_details[attr_id] = details
+                            attributes.append(attr_details)
+                            }
+                        }
+                database.close()
+                }
+            return attributes
+        }
+    
     
     // isUnique attribute query functions
     
