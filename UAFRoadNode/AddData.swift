@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var attributes_info = [Int: [String: String]]()
@@ -24,8 +26,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
             attribute_names.append(attributes_info[attr_id]?["attr_name"] ?? "")
         }
     }
-    
-    
+
     func getValueTypeInfo(attr_id: Int) -> [String: String] {
         var info = [String: String]()
         for (k, v) in attributes_info[attr_id] ?? ["":""] {
@@ -36,7 +37,6 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         }
         return info
     }
-    
     
     func getDateTime()-> String {
         let date = Date()
@@ -64,6 +64,9 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     
     @IBAction func submit(_ sender: Any) {
         print(add_data_attributes)
+        for attr in attribute_ids {
+            add_data_attributes[attr]?[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
+        }
         DBManager.shared.addDataPoint(attributes: add_data_attributes)
     }
     
@@ -115,7 +118,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         if data_type == "REAL" {
             real_value = Double(text_input) ?? -1.0
         }
-        if data_type == "NUMERIC" {
+        else if data_type == "NUMERIC" {
             numeric_value = Double(text_input) ?? -1.0
         }
         else if data_type == "INTEGER" {
@@ -129,7 +132,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         }
         attributes[DBManager.shared.field_data_attrID] = attr_id
         attributes[DBManager.shared.field_data_nodeID] = selected_node
-        attributes[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
+        //attributes[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
         attributes[DBManager.shared.field_data_integerValue] = int_value
         attributes[DBManager.shared.field_data_real_value] = real_value
         attributes[DBManager.shared.field_data_numeric_value] = numeric_value

@@ -473,6 +473,38 @@ class DBManager: NSObject {
         }
     
     
+    func getDataPointValue(data_point: Int, data_type: String, attr_id: Int) -> String {
+        var value = String()
+        var field_data_value = ""
+        if data_type == "REAL" {
+            field_data_value = field_data_real_value
+        }
+        else if data_type == "NUMERIC" {
+            field_data_value = field_data_numeric_value
+        }
+        else if data_type == "INTEGER" {
+            field_data_value = field_data_integerValue
+        }
+        else if data_type == "TEXT" {
+            field_data_value = field_data_textValue
+        }
+        else{
+            // TODO : Do something here when adding BLOB data
+        }
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_data_value) FROM data_point WHERE \(field_data_id)=\(data_point);"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        value = rsMain?.string(forColumn: field_data_value) ?? ""
+                        }
+                    }
+            database.close()
+            }
+        return value
+    }
+    
+    
     // isUnique attribute query functions
     
     func isUnique_layerName(name: String) -> Bool {

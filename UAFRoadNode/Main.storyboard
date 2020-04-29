@@ -1172,7 +1172,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="submit:" destination="Hvh-Cq-n9X" eventType="touchUpInside" id="xtu-Px-wZa"/>
+                                    <action selector="submit:" destination="Hvh-Cq-n9X" eventType="touchUpInside" id="04k-SU-wXT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1182,12 +1182,12 @@
                     <navigationItem key="navigationItem" title="Select Data Point" prompt="Select a data point to view" id="ymB-yz-jbT"/>
                     <connections>
                         <outlet property="myTableView" destination="tvv-5h-khn" id="uG8-OG-6Cn"/>
-                        <segue destination="xbQ-Oi-dZm" kind="show" id="Egv-RX-Q0a"/>
+                        <segue destination="xbQ-Oi-dZm" kind="show" identifier="showData" id="Egv-RX-Q0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkg-o7-orh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="-1035"/>
+            <point key="canvasLocation" x="-142" y="-1029"/>
         </scene>
     </scenes>
     <resources>

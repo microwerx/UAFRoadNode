@@ -10,8 +10,35 @@ import UIKit
 
 class ViewData: UIViewController {
     
+    var attributes_info = [Int: [String: String]]()
+    var attribute_ids = Array<Int>()
+    var attribute_names = Array<String>()
+    var layer = String()
+    
+    func buildAttrLists() {
+        for attr_info in attributes_info {
+            let attr_id = attr_info.key
+            attribute_ids.append(attr_id)
+            attribute_names.append(attributes_info[attr_id]?["attr_name"] ?? "")
+        }
+    }
+
+    func getValueTypeInfo(attr_id: Int) -> [String: String] {
+        var info = [String: String]()
+        for (k, v) in attributes_info[attr_id] ?? ["":""] {
+            if k != "attr_name" {
+                info["value_type"] = k
+                info["data_type"] = v
+            }
+        }
+        return info
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        layer = DBManager.shared.getLayerName(node_id: selected_node)
+        attributes_info = DBManager.shared.getLayerAttributes(layer_name: layer)
+        buildAttrLists()
         
         // Do any additional setup after loading the view.
     }
@@ -24,19 +51,25 @@ class ViewData: UIViewController {
 extension ViewData: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return attribute_names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! viewDataTableViewCell
-        cell.attributeType.text = "1" // fill in your value for column 1 (e.g. from an array)
-        cell.attributeValue.text = "2" // fill in your value for column 2
+        let attr_id = attribute_ids[indexPath.row]
+        let data_value_info = getValueTypeInfo(attr_id: attr_id )
+        let data_type = data_value_info["data_type"] ?? ""
+        
+        let attr_value = DBManager.shared.getDataPointValue(data_point: selectedDataPoint, data_type: data_type, attr_id: attr_id)
+        
+        cell.attributeType.text = attribute_names[indexPath.row] // fill in your value for column 1 (e.g. from an array)
+        cell.attributeValue.text = attr_value // fill in your value for column 2
         
         return cell
     }

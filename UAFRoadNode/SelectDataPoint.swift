@@ -15,20 +15,29 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var myTableView: UITableView!
     
     let dataPoints = DBManager.shared.getDataPoints(node_id: selected_node)
-
+    var date_labels = Array<String>()
+    
+    func build_date_labels() {
+        var date_times = Array<String>()
+        for dp in dataPoints {
+            date_times.append(DBManager.shared.getDataPointDateTime(dp_id: dp))
+        }
+        date_labels = Array(Set(date_times))
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         selectedDataPoint = 0
     }
     
+
     @IBAction func submit(_ sender: Any) {
-        print(selectedDataPoint)
-        _ = navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "showData", sender: nil)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        build_date_labels()
         myTableView.dataSource = self
         myTableView.delegate = self
 
@@ -47,15 +56,15 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataPoints.count
+        return date_labels.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Data Point", for: indexPath)
-        let cell_text = DBManager.shared.getDataPointDateTime(dp_id: dataPoints[indexPath.row])
+        let cell_text = date_labels[indexPath.row]
         cell.textLabel?.text = cell_text
-        selectedDataPoint = dataPoints[indexPath.row]
+        //selectedDataPoint = dataPoints[indexPath.row]
         return cell
     }
 }
