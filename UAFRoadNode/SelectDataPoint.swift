@@ -9,12 +9,14 @@
 import UIKit
 
 var selectedDataPoint = 0
+var selectedDateTime = ""
 
 class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myTableView: UITableView!
     
     let dataPoints = DBManager.shared.getDataPoints(node_id: selected_node)
+    
     var date_labels = Array<String>()
     
     func build_date_labels() {
@@ -46,7 +48,7 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedDataPoint = dataPoints[indexPath.row]
+        selectedDateTime = date_labels[indexPath.row]
     }
 
     

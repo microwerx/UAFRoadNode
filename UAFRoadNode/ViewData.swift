@@ -39,6 +39,8 @@ class ViewData: UIViewController {
         layer = DBManager.shared.getLayerName(node_id: selected_node)
         attributes_info = DBManager.shared.getLayerAttributes(layer_name: layer)
         buildAttrLists()
+        let df = "wefwf"
+        print(df)
         
         // Do any additional setup after loading the view.
     }
@@ -51,7 +53,7 @@ class ViewData: UIViewController {
 extension ViewData: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     
@@ -65,8 +67,8 @@ extension ViewData: UITableViewDelegate, UITableViewDataSource {
         let attr_id = attribute_ids[indexPath.row]
         let data_value_info = getValueTypeInfo(attr_id: attr_id )
         let data_type = data_value_info["data_type"] ?? ""
-        
-        let attr_value = DBManager.shared.getDataPointValue(data_point: selectedDataPoint, data_type: data_type, attr_id: attr_id)
+        // attr_id: Int, data_type: String, node_id: Int, date_time: String
+        let attr_value = DBManager.shared.getDataPointValue(attr_id: attr_id, data_type: data_type, node_id: selected_node, date_time: selectedDateTime)
         
         cell.attributeType.text = attribute_names[indexPath.row] // fill in your value for column 1 (e.g. from an array)
         cell.attributeValue.text = attr_value // fill in your value for column 2

@@ -473,7 +473,7 @@ class DBManager: NSObject {
         }
     
     
-    func getDataPointValue(data_point: Int, data_type: String, attr_id: Int) -> String {
+    func getDataPointValue(attr_id: Int, data_type: String, node_id: Int, date_time: String) -> String {
         var value = String()
         var field_data_value = ""
         if data_type == "REAL" {
@@ -493,7 +493,7 @@ class DBManager: NSObject {
         }
         if openDatabase() {
             do {
-                let query = "SELECT \(field_data_value) FROM data_point WHERE \(field_data_id)=\(data_point);"
+                let query = "SELECT \(field_data_value) FROM data_point WHERE \(field_data_attrID)=\(attr_id) AND \(field_data_nodeID)=\(node_id) AND \(field_data_dateTimeAdded)=\"\(date_time)\";"
                 let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
                     while (rsMain!.next() == true) {
                         value = rsMain?.string(forColumn: field_data_value) ?? ""
