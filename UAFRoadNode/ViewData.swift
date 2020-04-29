@@ -15,6 +15,12 @@ class ViewData: UIViewController {
     var attribute_names = Array<String>()
     var layer = String()
     
+    @IBOutlet weak var date_label: UILabel!
+    
+    @IBOutlet weak var node_label: UILabel!
+    
+    @IBOutlet weak var layer_label: UILabel!
+    
     func buildAttrLists() {
         for attr_info in attributes_info {
             let attr_id = attr_info.key
@@ -39,8 +45,9 @@ class ViewData: UIViewController {
         layer = DBManager.shared.getLayerName(node_id: selected_node)
         attributes_info = DBManager.shared.getLayerAttributes(layer_name: layer)
         buildAttrLists()
-        let df = "wefwf"
-        print(df)
+        layer_label.text = layer
+        node_label.text = DBManager.shared.getNodeName(node_id: selected_node)
+        date_label.text = selectedDateTime
         
         // Do any additional setup after loading the view.
     }
@@ -67,7 +74,7 @@ extension ViewData: UITableViewDelegate, UITableViewDataSource {
         let attr_id = attribute_ids[indexPath.row]
         let data_value_info = getValueTypeInfo(attr_id: attr_id )
         let data_type = data_value_info["data_type"] ?? ""
-        // attr_id: Int, data_type: String, node_id: Int, date_time: String
+        let data_value = data_value_info["value_type"] ?? "" // TODO : find a way to add value type to cell
         let attr_value = DBManager.shared.getDataPointValue(attr_id: attr_id, data_type: data_type, node_id: selected_node, date_time: selectedDateTime)
         
         cell.attributeType.text = attribute_names[indexPath.row] // fill in your value for column 1 (e.g. from an array)

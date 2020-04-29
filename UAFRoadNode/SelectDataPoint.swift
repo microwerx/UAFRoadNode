@@ -12,7 +12,7 @@ var selectedDataPoint = 0
 var selectedDateTime = ""
 
 class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var myTableView: UITableView!
     
     let dataPoints = DBManager.shared.getDataPoints(node_id: selected_node)
@@ -31,11 +31,6 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
         selectedDataPoint = 0
     }
     
-
-    @IBAction func submit(_ sender: Any) {
-        performSegue(withIdentifier: "showData", sender: nil)
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +44,7 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedDateTime = date_labels[indexPath.row]
+        performSegue(withIdentifier: "showData", sender: nil)
     }
 
     
