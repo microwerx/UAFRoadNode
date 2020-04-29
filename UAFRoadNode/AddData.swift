@@ -26,7 +26,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
             attribute_names.append(attributes_info[attr_id]?["attr_name"] ?? "")
         }
     }
-
+    
     func getValueTypeInfo(attr_id: Int) -> [String: String] {
         var info = [String: String]()
         for (k, v) in attributes_info[attr_id] ?? ["":""] {
@@ -68,6 +68,14 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
             add_data_attributes[attr]?[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
         }
         DBManager.shared.addDataPoint(attributes: add_data_attributes)
+        
+        let confirmMessage = UIAlertController(title: "Confirm", message: "You have successfully added a new node data.", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+        })
+        
+        confirmMessage.addAction(ok)
+        self.present(confirmMessage, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +85,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     var cells = [Int: String]()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! addDataTableViewCell
         // look at addDataTableViewCell.swift file to see UILabel/Text Field names
         let value_type_info = getValueTypeInfo(attr_id: attribute_ids[indexPath.row])
@@ -97,7 +105,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         cells[indexPath.row] = cell.addDataTextField?.text
         return cell
     }
-   
+    
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -130,6 +138,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         else{
             // TODO : Do something here when adding BLOB data
         }
+        
         attributes[DBManager.shared.field_data_attrID] = attr_id
         attributes[DBManager.shared.field_data_nodeID] = selected_node
         //attributes[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
@@ -141,6 +150,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         // TODO: add BLOB data value
         print(textField.tag)
         print(textField.text ?? "")
+        
     }
     
     
