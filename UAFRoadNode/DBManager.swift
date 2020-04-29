@@ -282,6 +282,39 @@ class DBManager: NSObject {
     }
     
     
+    func getDataPoints(node_id: Int) -> Array<Int> {
+        var dp_ids = Array<Int>()
+        if openDatabase() {
+            do {
+                let query = "SELECT \(field_data_id) FROM data_point WHERE \(field_data_nodeID)=\(node_id);"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                while (rsMain!.next() == true) {
+                    let id = Int(rsMain?.string(forColumn: field_data_id) ?? "") ?? -1
+                    dp_ids.append(id)
+                }
+            }
+            database.close()
+        }
+        return dp_ids
+    }
+    
+    func getDataPointDateTime(dp_id: Int) -> String {
+        var dp_date_time = String()
+            if openDatabase() {
+                do {
+                    let query = "SELECT \(field_data_dateTimeAdded) FROM data_point WHERE \(field_data_id)=\(dp_id);"
+                    let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        dp_date_time = rsMain?.string(forColumn: field_data_dateTimeAdded) ?? ""
+                    }
+                }
+                database.close()
+            }
+        return dp_date_time
+    }
+    
+    
+    
     func getLayerNames() -> Array<String>{
         var layerNames = Array<String>()
         if openDatabase() {

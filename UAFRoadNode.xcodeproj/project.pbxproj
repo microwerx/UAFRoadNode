@@ -23,6 +23,7 @@
 		8ABEFAD82457644800632AB3 /* addDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABEFAD72457644800632AB3 /* addDataTableViewCell.swift */; };
 		8ABEFADA2457774900632AB3 /* viewDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABEFAD92457774900632AB3 /* viewDataTableViewCell.swift */; };
 		B516E005244BFFB300065399 /* CreateValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516E004244BFFB300065399 /* CreateValueType.swift */; };
+		B53095B5245914CD00B8AA3E /* SelectDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53095B4245914CD00B8AA3E /* SelectDataPoint.swift */; };
 		B53C0C692456770700772A82 /* NodeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C682456770700772A82 /* NodeMenu.swift */; };
 		B53C0C6B24567C7300772A82 /* AddData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C6A24567C7300772A82 /* AddData.swift */; };
 		B53C0C6D24567C9D00772A82 /* ViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C0C6C24567C9D00772A82 /* ViewData.swift */; };
@@ -77,6 +78,7 @@
 		8ABEFAD72457644800632AB3 /* addDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDataTableViewCell.swift; sourceTree = "<group>"; };
 		8ABEFAD92457774900632AB3 /* viewDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewDataTableViewCell.swift; sourceTree = "<group>"; };
 		B516E004244BFFB300065399 /* CreateValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateValueType.swift; sourceTree = "<group>"; };
+		B53095B4245914CD00B8AA3E /* SelectDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDataPoint.swift; sourceTree = "<group>"; };
 		B53C0C682456770700772A82 /* NodeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeMenu.swift; sourceTree = "<group>"; };
 		B53C0C6A24567C7300772A82 /* AddData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddData.swift; sourceTree = "<group>"; };
 		B53C0C6C24567C9D00772A82 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				B53C0C682456770700772A82 /* NodeMenu.swift */,
 				B53C0C6A24567C7300772A82 /* AddData.swift */,
 				B53C0C6C24567C9D00772A82 /* ViewData.swift */,
+				B53095B4245914CD00B8AA3E /* SelectDataPoint.swift */,
 			);
 			path = UAFRoadNode;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			files = (
 				B53C2B672456029B00784E78 /* NameNode.swift in Sources */,
 				B53C0C6B24567C7300772A82 /* AddData.swift in Sources */,
+				B53095B5245914CD00B8AA3E /* SelectDataPoint.swift in Sources */,
 				8A4214EF244D5EB6004480CA /* editLayerDetail.swift in Sources */,
 				8A4214F3244D7129004480CA /* exportFiles.swift in Sources */,
 				8ABEFADA2457774900632AB3 /* viewDataTableViewCell.swift in Sources */,
