@@ -10,8 +10,9 @@ import UIKit
 
 class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    var valueTypeNames: Array<String> = DBManager.shared.selectValueTypeNames()
-    
+    var valueTypesInfo: [Int: String] = DBManager.shared.selectValueTypeNames()
+    var valueType_ids = Array<Int>()
+    var valueType_names = Array<String>()
     var selectedValueType = ""
     var attribute_count = 0
     
@@ -27,6 +28,15 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
         self.view.endEditing(true)
         return true
     }
+    
+    func buildValueTypeLists() {
+        for valueType_info in valueTypesInfo {
+            let value_type_id = valueType_info.key
+            valueType_ids.append(value_type_id)
+            valueType_names.append(valueTypesInfo[value_type_id] ?? "")
+        }
+    }
+    
     
     @IBAction func addNewLayerType(_ sender: UIButton) {
         let layer_attr = ["name": layer_name.text!, "creation_date": getDate(), "crypto": "test", "crypto_key": "test", "md5_hash": "test", "created_locally": 1, "on_display": 1] as [String : Any]
@@ -126,7 +136,7 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedValueType = valueTypeNames[indexPath.row]
+        selectedValueType = valueType_names[indexPath.row]
         print(selectedValueType)
     }
     
@@ -143,11 +153,12 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        buildValueTypeLists()
         valueType_tableView.dataSource = self
         valueType_tableView.delegate = self
         layer_name.delegate = self
         attribute_name.delegate = self
+        
         
         
         // Do any additional setup after loading the view.
@@ -162,15 +173,14 @@ class newLayerTypeViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return valueTypeNames.count
+        return valueType_ids.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Value Type", for: indexPath)
-        
-        
-        cell.textLabel?.text = valueTypeNames[indexPath.row]
+        let data_type = DBManager.shared.getDataTypeName(value_type_id: valueType_ids[indexPath.row])
+        let cell_text = "\(valueType_names[indexPath.row]): \(data_type)"
+        cell.textLabel?.text = cell_text
         
         return cell
     }

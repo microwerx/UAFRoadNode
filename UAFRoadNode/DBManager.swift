@@ -232,20 +232,22 @@ class DBManager: NSObject {
     
     // Other select Queries
     
-    func selectValueTypeNames() -> Array<String> {
+    func selectValueTypeNames() -> [Int: String] {
         if openDatabase() {
             do {
                 let query = "SELECT * FROM value_types;"
                 let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: ([]))
-                var ids = [String]()
+                var info = [Int: String]()
                 while (rsMain!.next() == true) {
-                    ids.append((rsMain?.string(forColumn: field_valueTypes_name))!)
+                    let name = rsMain?.string(forColumn: field_valueTypes_name)
+                    let id = Int(rsMain?.string(forColumn: field_valueTypes_id) ?? "-1") ?? -1
+                    info[id] = name
                 }
                 database.close()
-                return ids
+                return info
             }
         }
-        return [""]
+        return [-1: ""]
     }
     
     
@@ -448,6 +450,20 @@ class DBManager: NSObject {
         return name
     }
     
+    func getDataTypeName(value_type_id: Int) -> String {
+    var name = String()
+        if openDatabase() {
+            do {
+                let query = "SELECT * FROM value_types WHERE \(field_valueTypes_id)=\"\(value_type_id)\";"
+                let rsMain: FMResultSet? = database.executeQuery(query, withArgumentsIn: [])
+                    while (rsMain!.next() == true) {
+                        name = rsMain?.string(forColumn: field_valueTypes_dataType) ?? ""
+                        }
+                    }
+            database.close()
+            }
+        return name
+    }
     
 
     func getLayerAttributes(layer_name: String) -> [Int: [String: String]] {
