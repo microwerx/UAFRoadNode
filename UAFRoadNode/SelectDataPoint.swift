@@ -13,6 +13,8 @@ var selectedDateTime = ""
 
 class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var long_label: UILabel!
+    @IBOutlet weak var lat_label: UILabel!
     @IBOutlet weak var node_label: UILabel!
     @IBOutlet weak var layer_label: UILabel!
     @IBOutlet weak var myTableView: UITableView!
@@ -41,7 +43,9 @@ class SelectDataPoint: UIViewController, UITableViewDelegate, UITableViewDataSou
         myTableView.delegate = self
         node_label.text = DBManager.shared.getNodeName(node_id: selected_node)
         layer_label.text = DBManager.shared.getLayerName(node_id: selected_node)
-
+        let coord = DBManager.shared.getNodeCoord(node_id: selected_node)
+        lat_label.text = String(format:"%f", coord["latitude"] ?? -1.0)
+        long_label.text = String(format:"%f", coord["longitude"] ?? -1.0)
         // Do any additional setup after loading the view.
     }
     

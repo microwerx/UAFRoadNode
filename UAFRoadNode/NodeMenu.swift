@@ -10,6 +10,9 @@ import UIKit
 
 class NodeMenu: UIViewController {
 
+    @IBOutlet weak var lat_label: UILabel!
+    
+    @IBOutlet weak var long_label: UILabel!
     @IBOutlet weak var node_type_label: UILabel!
     
     @IBOutlet weak var node_name_label: UILabel!
@@ -28,7 +31,9 @@ class NodeMenu: UIViewController {
         super.viewDidLoad()
         node_name_label.text = DBManager.shared.getLayerName(node_id: selected_node)
         node_type_label.text = DBManager.shared.getNodeName(node_id: selected_node)
-        
+        let coord = DBManager.shared.getNodeCoord(node_id: selected_node)
+        lat_label.text = String(format:"%f", coord["latitude"] ?? -1.0)
+        long_label.text = String(format:"%f", coord["longitude"] ?? -1.0)
 
         // Do any additional setup after loading the view.
     }
