@@ -650,6 +650,49 @@ class DBManager: NSObject {
             database.close()
         }
     }
+    
+    func deleteNode(node_id: Int) {
+        deleteNodeEntry(node_id: node_id)
+        deleteDataPoints(node_id: node_id)
+    }
+    
+    func deleteNodeEntry(node_id: Int) {
+        if openDatabase() {
+            do {
+                let query = "DELETE FROM nodes WHERE \(field_nodes_id) = \"\(node_id)\";"
+                if !database.executeStatements(query) {
+                    print("Failed to delete node \(node_id)")
+                    print(database.lastError(), database.lastErrorMessage())
+                    }
+                
+                else {
+                    print("Deleted node \(node_id) from the layers database")
+                    }
+                }
+            database.close()
+        }
+    }
+    
+    func deleteDataPoints(node_id: Int) {
+        let data_points = getDataPoints(node_id: node_id)
+        for data_point in data_points {
+            if openDatabase() {
+                do {
+                    let query = "DELETE FROM data_point WHERE \(field_data_id) = \"\(data_point)\";"
+                    if !database.executeStatements(query) {
+                        print("Failed to delete data point \(data_point)")
+                        print(database.lastError(), database.lastErrorMessage())
+                        }
+                    
+                    else {
+                        print("Deleted data point \(data_point) from the layers database")
+                        }
+                    }
+                database.close()
+            }
+        }
+    }
+
 
     // UPDATE functions
     

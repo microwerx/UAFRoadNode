@@ -11,19 +11,16 @@ import UIKit
 class NodeMenu: UIViewController {
 
     @IBOutlet weak var lat_label: UILabel!
-    
     @IBOutlet weak var long_label: UILabel!
     @IBOutlet weak var node_type_label: UILabel!
-    
     @IBOutlet weak var node_name_label: UILabel!
-    
-    @IBAction func view_node_data(_ sender: Any) {
-    }
     
     @IBAction func add_node_data(_ sender: Any) {
     }
     
     @IBAction func delete_node(_ sender: Any) {
+        DBManager.shared.deleteNode(node_id: selected_node)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     
