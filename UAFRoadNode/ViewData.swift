@@ -10,6 +10,9 @@ import UIKit
 
 class ViewData: UIViewController {
     
+    @IBOutlet weak var lat_label: UILabel!
+    @IBOutlet weak var long_label: UILabel!
+    
     var attributes_info = [Int: [String: String]]()
     var attribute_ids = Array<Int>()
     var attribute_names = Array<String>()
@@ -48,6 +51,9 @@ class ViewData: UIViewController {
         layer_label.text = layer
         node_label.text = DBManager.shared.getNodeName(node_id: selected_node)
         date_label.text = selectedDateTime
+        let coord = DBManager.shared.getNodeCoord(node_id: selected_node)
+        lat_label.text = String(format:"%f", coord["latitude"] ?? -1.0)
+        long_label.text = String(format:"%f", coord["longitude"] ?? -1.0)
         
         // Do any additional setup after loading the view.
     }
