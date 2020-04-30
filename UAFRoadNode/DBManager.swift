@@ -697,6 +697,12 @@ class DBManager: NSObject {
     // UPDATE functions
     
     func editLayerName(old_name: String, new_name: String) {
+        editLayerNameEntry(old_name: old_name, new_name: new_name)
+        editNodeLayerName(old_name: old_name, new_name: new_name)
+        editAttributeLayerName(old_name: old_name, new_name: new_name)
+    }
+    
+    func editLayerNameEntry(old_name: String, new_name: String) {
         if openDatabase() {
             do {
                 let query = "UPDATE layers SET \(field_layers_name) = '\(new_name)' WHERE \(field_layers_name) = '\(old_name)';"
@@ -708,6 +714,44 @@ class DBManager: NSObject {
                 
                 else{
                     print("Updated layer name \"\(old_name)\" to \"\(new_name)\"")
+                }
+            }
+        }
+        database.close()
+    }
+    
+    
+    func editNodeLayerName(old_name: String, new_name: String) {
+        if openDatabase() {
+            do {
+                let query = "UPDATE nodes SET \(field_nodes_layerName) = '\(new_name)' WHERE \(field_nodes_layerName) = '\(old_name)';"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to update node layer_name \"\(old_name)\" to \"\(new_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                }
+                
+                else{
+                    print("Updated node layer name \"\(old_name)\" to \"\(new_name)\"")
+                }
+            }
+        }
+        database.close()
+    }
+    
+    
+    func editAttributeLayerName(old_name: String, new_name: String) {
+        if openDatabase() {
+            do {
+                let query = "UPDATE attributes SET \(field_attributes_layerName) = '\(new_name)' WHERE \(field_attributes_layerName) = '\(old_name)';"
+                
+                if !database.executeStatements(query) {
+                    print("Failed to update attribute layer name \"\(old_name)\" to \"\(new_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                }
+                
+                else{
+                    print("Updated attribute layer name \"\(old_name)\" to \"\(new_name)\"")
                 }
             }
         }

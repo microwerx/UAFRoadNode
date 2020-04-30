@@ -17,6 +17,8 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     var attribute_names = Array<String>()
     var layer = String()
     
+    var current_text_field = UITextField()
+    
     var add_data_attributes = [Int: [String: Any]]()
     
     func buildAttrLists() {
@@ -63,6 +65,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
     
     
     @IBAction func submit(_ sender: Any) {
+        current_text_field.endEditing(true)
         print(add_data_attributes)
         for attr in attribute_ids {
             add_data_attributes[attr]?[DBManager.shared.field_data_dateTimeAdded] = getDateTime()
@@ -103,6 +106,7 @@ class AddData: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITab
         let text = cell.addDataTextField.tag
         print(text)
         cells[indexPath.row] = cell.addDataTextField?.text
+        current_text_field = cell.addDataTextField
         return cell
     }
     
