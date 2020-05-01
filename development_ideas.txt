@@ -1,0 +1,19 @@
+Thoughts on how you may wish to proceed, from the initial development team:
+
+- Finish adding Import/Export of CSV/KML files
+	- Currently have dummy functions
+
+- Add cryptographic validation on imported data
+	- Attributes already added to layers table
+
+- Add Input Validation
+
+- Add more node colors and make them user definable
+
+- Add BLOB data type support so files, images, and videos can be attached to data
+
+- Add an interactive tutorial
+
+- Add ability to hide or responsibly delete unwanted value types
+
+- add ability to delete individual data points (as opposed to a whole node)
