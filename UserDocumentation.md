@@ -22,12 +22,8 @@ This documentation is to help users when using the UAF Friendly GIS application.
 
 ## 1. Creating a Value Type
 
-	A value type must be defined before any attributes or layers can be created. To create a value type
-	select the menu icon <img src="Images/menuIcon.png"> in the top right corner of the screen. Then select the button labeled *Create
-	Value Type*. A new page will appear. At the top of the page There will be a text box where the name of
-	the value type can be entered. An error message will appear if a name is not entered. Once a name is 
-	entered a Data Type must be selected for the value type to be valid.
-	There are four options:
+A value type must be defined before any attributes or layers can be created. To create a value type select the menu icon <img src="Images/menuIcon.png"> in the top right corner of the screen. Then select the button labeled *Create Value Type*. A new page will appear. At the top of the page There will be a text box where the name ofthe value type can be entered. An error message will appear if a name is not entered. Once a name is entered a Data Type must be selected for the value type to be valid.
+There are four options:
 		
 		- INTEGER - These are any non-decimal numbers
 		- REAL - These are any numbers that include decimals
