@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/namikim/Desktop/UAFRoadNode/UAFRoadNode/UAFRoadNode/editLayerType.swift">
-   </FileRef>
-   <FileRef
       location = "group:UAFRoadNode.xcodeproj">
    </FileRef>
    <FileRef
