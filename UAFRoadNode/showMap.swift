@@ -62,7 +62,16 @@ class showMap: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var txtSearch: UITextField!
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
-        if !limit_longpress {
+        if(selectedNodeType == "") {
+            let errorMessage = UIAlertController(title: "Error", message: "You need to select a node type before placing a node. Click the pin icon at the top of the screen.", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in print("Ok button tapped")
+            })
+            
+            errorMessage.addAction(ok)
+            self.present(errorMessage, animated: true, completion: nil)
+        }
+        else if !limit_longpress {
             limit_longpress = true
             performSegue(withIdentifier: "NameNodeSegue", sender: sender)
         }

@@ -12,7 +12,7 @@ class CreateValueType: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet weak var myTableView: UITableView!
     
-    let dataTypes = ["INTEGER", "REAL", "TEXT", "BLOB"]
+    let dataTypes = ["INTEGER", "REAL", "TEXT", "NUMERIC"]
     
     
     @IBOutlet weak var value_type_name: UITextField!
