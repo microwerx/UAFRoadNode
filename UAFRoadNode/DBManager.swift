@@ -651,6 +651,49 @@ class DBManager: NSObject {
     // DELETE Queries
     
     func deleteLayerType(layer_name: String) {
+        deleteLayerTypeEntry(layer_name: layer_name)
+        deleteLayerTypeAttributes(layer_name: layer_name)
+        deleteLayerTypeNodes(layer_name: layer_name)
+    }
+    
+    
+    func deleteLayerTypeNodes(layer_name: String) {
+        if openDatabase() {
+            do {
+                let query = "DELETE FROM nodes WHERE \(field_nodes_layerName) = \"\(layer_name)\";"
+                if !database.executeStatements(query) {
+                    print("Failed to delete node layer type \"\(layer_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                    }
+                
+                else {
+                    print("Deleted node layer type \"\(layer_name)\" from the layers database")
+                    }
+                }
+            database.close()
+        }
+    }
+    
+    
+    func deleteLayerTypeAttributes(layer_name: String) {
+        if openDatabase() {
+            do {
+                let query = "DELETE FROM attributes WHERE \(field_attributes_layerName) = \"\(layer_name)\";"
+                if !database.executeStatements(query) {
+                    print("Failed to delete node layer type \"\(layer_name)\"")
+                    print(database.lastError(), database.lastErrorMessage())
+                    }
+                
+                else {
+                    print("Deleted node layer type \"\(layer_name)\" from the layers database")
+                    }
+                }
+            database.close()
+        }
+    }
+    
+    
+    func deleteLayerTypeEntry(layer_name: String) {
         if openDatabase() {
             do {
                 let query = "DELETE FROM layers WHERE \(field_layers_name) = \"\(layer_name)\";"
@@ -667,10 +710,12 @@ class DBManager: NSObject {
         }
     }
     
+    
     func deleteNode(node_id: Int) {
         deleteNodeEntry(node_id: node_id)
         deleteDataPoints(node_id: node_id)
     }
+    
     
     func deleteNodeEntry(node_id: Int) {
         if openDatabase() {
@@ -688,6 +733,7 @@ class DBManager: NSObject {
             database.close()
         }
     }
+    
     
     func deleteDataPoints(node_id: Int) {
         let data_points = getDataPoints(node_id: node_id)
