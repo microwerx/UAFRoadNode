@@ -602,7 +602,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qh2-zr-xwV" customClass="RoundButton" customModule="UAFRoadNode" customModuleProvider="target">
-                                <rect key="frame" x="82" y="119" width="250" height="30"/>
+                                <rect key="frame" x="82" y="118" width="250" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.35148081034987216" green="0.64278176413926003" blue="0.96620899438858032" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -610,7 +610,7 @@
                                     <constraint firstAttribute="height" constant="30" id="o5e-mx-A5Y"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Select Layers">
+                                <state key="normal" title="Select Displayed Layers">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
