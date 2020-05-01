@@ -754,6 +754,23 @@ class DBManager: NSObject {
             }
         }
     }
+    
+    
+    func deleteValueType(value_type_id: Int) {
+        if openDatabase() {
+            do {
+                let query = "DELETE FROM value_types WHERE \(field_valueTypes_id) = \"\(value_type_id)\";"
+                if !database.executeStatements(query) {
+                    print("Failed to delete value_type_id \(value_type_id)")
+                    print(database.lastError(), database.lastErrorMessage())
+                    }
+                else {
+                    print("Deleted value_type_id \(value_type_id) from the layers database")
+                    }
+                }
+            database.close()
+        }
+    }
 
 
     // UPDATE functions
