@@ -40,10 +40,10 @@ To create a layer select the menu button <img src="Images/menuIcon.png" width = 
 
 ## 3. Editing a Layer
 	
-###Rename a Layer
+### Rename a Layer
 To rename a layer select the menu button <img src="Images/menuIcon.png" width = "25"> in the top right corner of the screen. Then select the *Edit Layer* button. A list will appear showing the names of all the layers that have been created. Select a layeror use the search bar at the top of the screen to find the layer and then select it. A new window will appear displaying a text box. Enter the new layer name and then click the *Submit Change* button. The layer will now be displayed under its new name.
 
-###Delete a Layer
+### Delete a Layer
 To delete a layer select the menu button <img src="Images/menuIcon.png" width = "25"> in the top right corner of the screen. Then select the *Edit Layer* button. A list will appear showing the names of all the layers that have been created. Swipe the layer name to the left. A red delete button will appear on the right side of the screen. Selecting the button will cause a pop up window to appear. It will ask if the layer and all of its associated nodes should be deleted. Clicking *OK* will delete the layer and all the nodes belonging to that layer. If *Cancel* is selected, then the layer and its nodes will not be deleted.
 
 
